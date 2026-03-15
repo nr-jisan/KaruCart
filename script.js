@@ -35,46 +35,34 @@ const products = [
 ];
 
 const productGrid = document.getElementById("productGrid");
-const productSwitcher = document.getElementById("productSwitcher");
+
+const cameraModal = document.getElementById("cameraModal");
+const cameraPreview = document.getElementById("cameraPreview");
+const backBtn = document.getElementById("backBtn");
+const pinBtn = document.getElementById("pinBtn");
+const wallModeBtn = document.getElementById("wallModeBtn");
+const floorModeBtn = document.getElementById("floorModeBtn");
+const resetBtn = document.getElementById("resetBtn");
+const shotBtn = document.getElementById("shotBtn");
 
 const cameraProductTitle = document.getElementById("cameraProductTitle");
 const cameraArtist = document.getElementById("cameraArtist");
-const cameraLocation = document.getElementById("cameraLocation");
-const cameraStory = document.getElementById("cameraStory");
-
-const startCameraBtn = document.getElementById("startCamera");
-const stopCameraBtn = document.getElementById("stopCamera");
-const takeShotBtn = document.getElementById("takeShot");
-
-const cameraPreview = document.getElementById("cameraPreview");
 const cameraStatus = document.getElementById("cameraStatus");
-const cameraPlaceholder = document.getElementById("cameraPlaceholder");
-const cameraStage = document.getElementById("cameraStage");
 
 const overlayWrapper = document.getElementById("overlayWrapper");
-const productOverlay = document.getElementById("productOverlay");
 const overlayShadow = document.getElementById("overlayShadow");
 const overlayFrame = document.getElementById("overlayFrame");
-
-const zoomInBtn = document.getElementById("zoomIn");
-const zoomOutBtn = document.getElementById("zoomOut");
-const rotateLeftBtn = document.getElementById("rotateLeft");
-const rotateRightBtn = document.getElementById("rotateRight");
-const resetOverlayBtn = document.getElementById("resetOverlay");
-const opacityRange = document.getElementById("opacityRange");
-
-const wallModeBtn = document.getElementById("wallMode");
-const floorModeBtn = document.getElementById("floorMode");
+const productOverlay = document.getElementById("productOverlay");
 
 const captureCanvas = document.getElementById("captureCanvas");
-const screenshotBox = document.getElementById("screenshotBox");
+const shotPreview = document.getElementById("shotPreview");
 const capturedImage = document.getElementById("capturedImage");
 const downloadShot = document.getElementById("downloadShot");
+const closeShot = document.getElementById("closeShot");
 
-let selectedProductIndex = 0;
 let cameraStream = null;
+let selectedProduct = products[0];
 let currentMode = "wall";
-let isPlaced = false;
 
 let overlayState = {
   x: 0,
@@ -84,20 +72,17 @@ let overlayState = {
   opacity: 1
 };
 
+let isPinned = false;
 let isDragging = false;
-let startX = 0;
-let startY = 0;
-let initialX = 0;
-let initialY = 0;
+let longPressTimer = null;
 
-productOverlay.onload = () => {
-  console.log("Overlay image loaded successfully");
-};
+let startTouches = [];
+let gestureStart = null;
+let dragStart = null;
 
-productOverlay.onerror = () => {
-  console.log("Overlay image failed to load");
-  cameraStatus.textContent = "Overlay PNG file not found. Check image path/name.";
-};
+let orientationEnabled = false;
+let baseBeta = null;
+let baseGamma = null;
 
 function renderProducts() {
   productGrid.innerHTML = "";
@@ -105,7 +90,6 @@ function renderProducts() {
   products.forEach((product, index) => {
     const card = document.createElement("div");
     card.className = "product-card";
-
     card.innerHTML = `
       <img src="${product.image}" alt="${product.name}">
       <div class="product-content">
@@ -113,258 +97,299 @@ function renderProducts() {
         <p class="product-meta">Artist: ${product.artist}</p>
         <p class="product-meta">${product.location}</p>
         <p class="product-price">${product.price}</p>
-        <div class="product-actions">
-          <button class="small-btn try-btn" data-try="${index}">Try in My Room</button>
-        </div>
+        <button class="try-btn" data-index="${index}">Try in My Room</button>
       </div>
     `;
-
     productGrid.appendChild(card);
   });
 
-  document.querySelectorAll("[data-try]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const index = Number(button.dataset.try);
-      selectProduct(index);
-      document.getElementById("camera-demo").scrollIntoView({ behavior: "smooth" });
+  document.querySelectorAll(".try-btn").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      const index = Number(btn.dataset.index);
+      selectedProduct = products[index];
+      loadSelectedProduct();
+      await openCameraFullscreen();
     });
   });
 }
 
-function renderProductSwitcher() {
-  productSwitcher.innerHTML = "";
-
-  products.forEach((product, index) => {
-    const btn = document.createElement("button");
-    btn.className = `switch-btn ${index === selectedProductIndex ? "active" : ""}`;
-    btn.textContent = `Product ${index + 1}`;
-    btn.addEventListener("click", () => selectProduct(index));
-    productSwitcher.appendChild(btn);
-  });
+function loadSelectedProduct() {
+  cameraProductTitle.textContent = selectedProduct.name;
+  cameraArtist.textContent = `Artist: ${selectedProduct.artist}`;
+  productOverlay.src = selectedProduct.overlay;
+  currentMode = selectedProduct.mode;
+  applyMode();
+  resetOverlay();
 }
 
-function setMode(mode) {
-  currentMode = mode;
+function applyMode() {
+  overlayWrapper.classList.remove("wall-mode", "floor-mode");
+  overlayWrapper.classList.add(`${currentMode}-mode`);
 
-  wallModeBtn.classList.toggle("active", mode === "wall");
-  floorModeBtn.classList.toggle("active", mode === "floor");
-
-  if (mode === "wall") {
-    overlayFrame.style.background = "#6f4a2d";
-    overlayFrame.style.padding = "10px";
-    overlayFrame.style.border = "3px solid #4e321d";
-    overlayShadow.style.display = "block";
-    overlayWrapper.style.top = "35%";
-    overlayWrapper.classList.add("wall-locked");
-    isPlaced = false;
+  if (currentMode === "wall") {
+    overlayWrapper.style.top = "38%";
     overlayState.rotation = -2;
+    cameraStatus.textContent = "One finger drag • Two fingers zoom/rotate • Long press to pin on wall";
   } else {
-    overlayFrame.style.background = "transparent";
-    overlayFrame.style.padding = "0";
-    overlayFrame.style.border = "none";
-    overlayShadow.style.display = "block";
     overlayWrapper.style.top = "72%";
-    overlayWrapper.classList.remove("wall-locked");
-    isPlaced = false;
     overlayState.rotation = 0;
+    cameraStatus.textContent = "One finger drag • Two fingers zoom/rotate • Long press to pin on floor";
   }
 
-  resetOverlayState(false);
-}
-
-function selectProduct(index) {
-  selectedProductIndex = index;
-  const product = products[index];
-
-  cameraProductTitle.textContent = product.name;
-  cameraArtist.textContent = `Artist: ${product.artist}`;
-  cameraLocation.textContent = `Location: ${product.location}`;
-  cameraStory.textContent = product.story;
-
-  productOverlay.src = product.overlay;
-  productOverlay.alt = product.name;
-
-  renderProductSwitcher();
-  setMode(product.mode);
-}
-
-function resetOverlayState(updateModeTop = true) {
-  overlayState = {
-    x: 0,
-    y: 0,
-    scale: 1,
-    rotation: currentMode === "wall" ? -2 : 0,
-    opacity: 1
-  };
-
-  isPlaced = false;
-
-  if (updateModeTop) {
-    if (currentMode === "wall") {
-      overlayWrapper.style.top = "35%";
-    } else {
-      overlayWrapper.style.top = "72%";
-    }
-  }
-
-  opacityRange.value = 100;
   applyOverlayTransform();
 }
 
-function applyOverlayTransform() {
-  overlayWrapper.style.transform =
-    `translate(-50%, -50%) translate(${overlayState.x}px, ${overlayState.y}px) scale(${overlayState.scale}) rotate(${overlayState.rotation}deg)`;
+function resetOverlay() {
+  isPinned = false;
+  pinBtn.textContent = "Pin";
+  overlayWrapper.classList.remove("pinned");
 
-  productOverlay.style.opacity = overlayState.opacity;
+  overlayState.x = 0;
+  overlayState.y = 0;
+  overlayState.scale = 1;
+  overlayState.rotation = currentMode === "wall" ? -2 : 0;
+  overlayState.opacity = 1;
+
+  baseBeta = null;
+  baseGamma = null;
+
+  applyOverlayTransform();
 }
 
-async function startCamera() {
+function applyOverlayTransform(extraTiltX = 0, extraTiltY = 0) {
+  const finalRotate = overlayState.rotation + extraTiltY;
+  const tiltX = extraTiltX;
+  const tiltY = extraTiltY * 0.4;
+
+  overlayWrapper.style.transform =
+    `translate(-50%, -50%) translate(${overlayState.x}px, ${overlayState.y}px) ` +
+    `scale(${overlayState.scale}) rotate(${finalRotate}deg) ` +
+    `perspective(900px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+}
+
+async function openCameraFullscreen() {
+  cameraModal.classList.add("show");
+  document.body.style.overflow = "hidden";
+
   try {
-    if (cameraStream) {
-      stopCamera();
-    }
+    if (cameraStream) stopCamera();
 
     cameraStream = await navigator.mediaDevices.getUserMedia({
-      video: {
-        facingMode: { ideal: "environment" }
-      },
+      video: { facingMode: { ideal: "environment" } },
       audio: false
     });
 
     cameraPreview.srcObject = cameraStream;
-    cameraPlaceholder.style.display = "none";
+    cameraStatus.textContent = currentMode === "wall"
+      ? "Camera on • Move product, then long press to pin on wall"
+      : "Camera on • Move product, then long press to pin on floor";
 
-    if (currentMode === "wall") {
-      cameraStatus.textContent = "Camera is on. Tap on the wall area to place the art.";
-    } else {
-      cameraStatus.textContent = "Camera is on. Drag the product and adjust it.";
-    }
+    await enableOrientationIfPossible();
   } catch (error) {
     console.error(error);
-    cameraStatus.textContent = "Camera access failed. Use localhost or HTTPS and allow permission.";
+    cameraStatus.textContent = "Camera access failed. Use HTTPS or localhost and allow permission.";
   }
 }
 
 function stopCamera() {
   if (cameraStream) {
-    cameraStream.getTracks().forEach((track) => track.stop());
+    cameraStream.getTracks().forEach(track => track.stop());
     cameraStream = null;
   }
-
   cameraPreview.srcObject = null;
-  cameraPlaceholder.style.display = "grid";
-  cameraStatus.textContent = "Camera is off.";
+  cameraModal.classList.remove("show");
+  document.body.style.overflow = "";
 }
 
-function startDrag(clientX, clientY) {
-  if (currentMode === "wall" && isPlaced) return;
-
-  isDragging = true;
-  startX = clientX;
-  startY = clientY;
-  initialX = overlayState.x;
-  initialY = overlayState.y;
+async function enableOrientationIfPossible() {
+  try {
+    if (
+      typeof DeviceOrientationEvent !== "undefined" &&
+      typeof DeviceOrientationEvent.requestPermission === "function"
+    ) {
+      const result = await DeviceOrientationEvent.requestPermission();
+      orientationEnabled = result === "granted";
+    } else {
+      orientationEnabled = true;
+    }
+  } catch (e) {
+    orientationEnabled = false;
+  }
 }
 
-function dragMove(clientX, clientY) {
-  if (!isDragging) return;
-
-  const dx = clientX - startX;
-  const dy = clientY - startY;
-
-  overlayState.x = initialX + dx;
-  overlayState.y = initialY + dy;
-
-  applyOverlayTransform();
+function getDistance(t1, t2) {
+  return Math.hypot(t2.clientX - t1.clientX, t2.clientY - t1.clientY);
 }
 
-function endDrag() {
-  isDragging = false;
+function getAngle(t1, t2) {
+  return Math.atan2(t2.clientY - t1.clientY, t2.clientX - t1.clientX) * 180 / Math.PI;
 }
 
-cameraStage.addEventListener("click", (e) => {
-  if (currentMode !== "wall") return;
-  if (!cameraStream) return;
+function startLongPress() {
+  clearLongPress();
+  longPressTimer = setTimeout(() => {
+    isPinned = true;
+    pinBtn.textContent = "Unpin";
+    overlayWrapper.classList.add("pinned");
+    cameraStatus.textContent = "Pinned. Now the object is locked. Move phone to see slight tilt effect.";
+  }, 550);
+}
 
-  const rect = cameraStage.getBoundingClientRect();
-  const centerX = rect.left + rect.width / 2;
-  const centerY = rect.top + rect.height / 2;
-
-  overlayState.x = e.clientX - centerX;
-  overlayState.y = e.clientY - centerY;
-
-  applyOverlayTransform();
-  isPlaced = true;
-  cameraStatus.textContent = "Wall art placed on the wall.";
-});
-
-overlayWrapper.addEventListener("mousedown", (e) => {
-  e.preventDefault();
-  startDrag(e.clientX, e.clientY);
-});
-
-window.addEventListener("mousemove", (e) => {
-  dragMove(e.clientX, e.clientY);
-});
-
-window.addEventListener("mouseup", endDrag);
+function clearLongPress() {
+  if (longPressTimer) {
+    clearTimeout(longPressTimer);
+    longPressTimer = null;
+  }
+}
 
 overlayWrapper.addEventListener("touchstart", (e) => {
-  const touch = e.touches[0];
-  startDrag(touch.clientX, touch.clientY);
+  if (isPinned) return;
+
+  if (e.touches.length === 1) {
+    const t = e.touches[0];
+    dragStart = {
+      x: t.clientX,
+      y: t.clientY,
+      initialX: overlayState.x,
+      initialY: overlayState.y
+    };
+    isDragging = true;
+    startLongPress();
+  }
+
+  if (e.touches.length === 2) {
+    clearLongPress();
+    const [t1, t2] = e.touches;
+    gestureStart = {
+      distance: getDistance(t1, t2),
+      angle: getAngle(t1, t2),
+      scale: overlayState.scale,
+      rotation: overlayState.rotation
+    };
+  }
 }, { passive: true });
 
 window.addEventListener("touchmove", (e) => {
-  if (!isDragging) return;
-  const touch = e.touches[0];
-  dragMove(touch.clientX, touch.clientY);
+  if (!cameraModal.classList.contains("show")) return;
+
+  if (isPinned) return;
+
+  if (e.touches.length === 1 && isDragging && dragStart) {
+    const t = e.touches[0];
+    const dx = t.clientX - dragStart.x;
+    const dy = t.clientY - dragStart.y;
+
+    if (Math.abs(dx) > 6 || Math.abs(dy) > 6) {
+      clearLongPress();
+    }
+
+    overlayState.x = dragStart.initialX + dx;
+    overlayState.y = dragStart.initialY + dy;
+    applyOverlayTransform();
+  }
+
+  if (e.touches.length === 2 && gestureStart) {
+    clearLongPress();
+    const [t1, t2] = e.touches;
+
+    const newDistance = getDistance(t1, t2);
+    const newAngle = getAngle(t1, t2);
+
+    const scaleFactor = newDistance / gestureStart.distance;
+    overlayState.scale = Math.max(0.2, Math.min(4, gestureStart.scale * scaleFactor));
+    overlayState.rotation = gestureStart.rotation + (newAngle - gestureStart.angle);
+
+    applyOverlayTransform();
+  }
 }, { passive: true });
 
-window.addEventListener("touchend", endDrag);
+window.addEventListener("touchend", () => {
+  isDragging = false;
+  dragStart = null;
+  gestureStart = null;
+  clearLongPress();
+});
 
-zoomInBtn.addEventListener("click", () => {
-  overlayState.scale += 0.1;
+overlayWrapper.addEventListener("mousedown", (e) => {
+  if (isPinned) return;
+  e.preventDefault();
+  dragStart = {
+    x: e.clientX,
+    y: e.clientY,
+    initialX: overlayState.x,
+    initialY: overlayState.y
+  };
+  isDragging = true;
+});
+
+window.addEventListener("mousemove", (e) => {
+  if (!isDragging || !dragStart || isPinned) return;
+  const dx = e.clientX - dragStart.x;
+  const dy = e.clientY - dragStart.y;
+  overlayState.x = dragStart.initialX + dx;
+  overlayState.y = dragStart.initialY + dy;
   applyOverlayTransform();
 });
 
-zoomOutBtn.addEventListener("click", () => {
-  overlayState.scale = Math.max(0.2, overlayState.scale - 0.1);
-  applyOverlayTransform();
+window.addEventListener("mouseup", () => {
+  isDragging = false;
+  dragStart = null;
 });
 
-rotateLeftBtn.addEventListener("click", () => {
-  overlayState.rotation -= 5;
-  applyOverlayTransform();
-});
+pinBtn.addEventListener("click", () => {
+  isPinned = !isPinned;
+  pinBtn.textContent = isPinned ? "Unpin" : "Pin";
+  overlayWrapper.classList.toggle("pinned", isPinned);
 
-rotateRightBtn.addEventListener("click", () => {
-  overlayState.rotation += 5;
-  applyOverlayTransform();
-});
-
-resetOverlayBtn.addEventListener("click", () => {
-  resetOverlayState();
-  if (currentMode === "wall") {
-    cameraStatus.textContent = "Reset done. Tap on the wall area to place again.";
+  if (isPinned) {
+    cameraStatus.textContent = "Pinned. Move phone to see slight tilt effect.";
   } else {
-    cameraStatus.textContent = "Reset done.";
+    baseBeta = null;
+    baseGamma = null;
+    cameraStatus.textContent = "Unpinned. You can move, zoom, and rotate again.";
+    applyOverlayTransform();
   }
 });
 
-opacityRange.addEventListener("input", () => {
-  overlayState.opacity = Number(opacityRange.value) / 100;
-  applyOverlayTransform();
+wallModeBtn.addEventListener("click", () => {
+  currentMode = "wall";
+  applyMode();
+  resetOverlay();
 });
 
-wallModeBtn.addEventListener("click", () => setMode("wall"));
-floorModeBtn.addEventListener("click", () => setMode("floor"));
+floorModeBtn.addEventListener("click", () => {
+  currentMode = "floor";
+  applyMode();
+  resetOverlay();
+});
 
-startCameraBtn.addEventListener("click", startCamera);
-stopCameraBtn.addEventListener("click", stopCamera);
+resetBtn.addEventListener("click", () => {
+  resetOverlay();
+  cameraStatus.textContent = "Reset done.";
+});
 
-takeShotBtn.addEventListener("click", () => {
+backBtn.addEventListener("click", () => {
+  stopCamera();
+});
+
+window.addEventListener("deviceorientation", (event) => {
+  if (!cameraModal.classList.contains("show")) return;
+  if (!isPinned) return;
+  if (!orientationEnabled) return;
+  if (event.beta == null || event.gamma == null) return;
+
+  if (baseBeta === null) baseBeta = event.beta;
+  if (baseGamma === null) baseGamma = event.gamma;
+
+  const deltaBeta = Math.max(-12, Math.min(12, (event.beta - baseBeta) * 0.15));
+  const deltaGamma = Math.max(-12, Math.min(12, (event.gamma - baseGamma) * 0.15));
+
+  applyOverlayTransform(-deltaBeta, deltaGamma);
+});
+
+shotBtn.addEventListener("click", () => {
   if (!cameraPreview.videoWidth || !cameraPreview.videoHeight) {
-    cameraStatus.textContent = "Open the camera first before taking a screenshot.";
+    cameraStatus.textContent = "Camera not ready.";
     return;
   }
 
@@ -376,7 +401,7 @@ takeShotBtn.addEventListener("click", () => {
 
   ctx.drawImage(cameraPreview, 0, 0, canvas.width, canvas.height);
 
-  const stageRect = cameraStage.getBoundingClientRect();
+  const stageRect = cameraModal.getBoundingClientRect();
   const overlayRect = overlayWrapper.getBoundingClientRect();
 
   const x = ((overlayRect.left - stageRect.left) / stageRect.width) * canvas.width;
@@ -411,13 +436,11 @@ takeShotBtn.addEventListener("click", () => {
   const tempImg = new Image();
   tempImg.onload = () => {
     ctx.save();
-    ctx.globalAlpha = overlayState.opacity;
     ctx.translate(x + w / 2, y + h / 2);
     ctx.rotate((overlayState.rotation * Math.PI) / 180);
 
     if (currentMode === "wall") {
       const framePadding = w * 0.08;
-
       ctx.fillStyle = "#6f4a2d";
       ctx.fillRect(
         -w / 2 - framePadding,
@@ -425,24 +448,22 @@ takeShotBtn.addEventListener("click", () => {
         w + framePadding * 2,
         h + framePadding * 2
       );
-
-      ctx.drawImage(tempImg, -w / 2, -h / 2, w, h);
-    } else {
-      ctx.drawImage(tempImg, -w / 2, -h / 2, w, h);
     }
 
+    ctx.drawImage(tempImg, -w / 2, -h / 2, w, h);
     ctx.restore();
 
     const dataURL = canvas.toDataURL("image/png");
     capturedImage.src = dataURL;
     downloadShot.href = dataURL;
-    screenshotBox.classList.add("show");
-    cameraStatus.textContent = "Screenshot captured successfully.";
+    shotPreview.classList.add("show");
   };
-
   tempImg.src = productOverlay.src;
 });
 
+closeShot.addEventListener("click", () => {
+  shotPreview.classList.remove("show");
+});
+
 renderProducts();
-selectProduct(0);
-applyOverlayTransform();
+loadSelectedProduct();

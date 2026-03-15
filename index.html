@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KaruCart AR-like Camera Demo</title>
+  <title>KaruCart Fullscreen AR-like Demo</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -14,7 +14,6 @@
         <ul class="nav-links">
           <li><a href="#home">Home</a></li>
           <li><a href="#products">Products</a></li>
-          <li><a href="#camera-demo">Try in Room</a></li>
         </ul>
       </nav>
     </div>
@@ -24,15 +23,13 @@
     <section class="hero" id="home">
       <div class="container hero-grid">
         <div class="hero-text">
-          <p class="tag">Artist Identity • Camera Projection • AR-like Demo</p>
-          <h1>See Handmade Products Inside Your Room</h1>
+          <p class="tag">Camera Projection • Fullscreen • AR-like Feel</p>
+          <h1>Preview Handmade Products in Your Room</h1>
           <p>
-            Open your camera and project a handcrafted product into your room.
-            Move, resize, rotate, change opacity, and capture a preview.
+            Open the camera in fullscreen and place a product into your room with touch gestures.
           </p>
           <div class="hero-buttons">
             <a href="#products" class="btn btn-primary">Explore Products</a>
-            <a href="#camera-demo" class="btn btn-secondary">Try in My Room</a>
           </div>
         </div>
 
@@ -41,7 +38,7 @@
           <div class="hero-card-content">
             <h3>Nakshi Wall Art</h3>
             <p>Artist: Farzana Akter</p>
-            <span>AR-like Camera Demo Ready</span>
+            <span>Try in My Room Available</span>
           </div>
         </div>
       </div>
@@ -51,96 +48,58 @@
       <div class="container">
         <div class="section-head">
           <h2>Featured Products</h2>
-          <p>Select a product and preview it with the mobile camera.</p>
+          <p>Tap “Try in My Room” to open fullscreen camera preview.</p>
         </div>
 
         <div class="product-grid" id="productGrid"></div>
       </div>
     </section>
-
-    <section class="section alt-bg" id="camera-demo">
-      <div class="container">
-        <div class="section-head">
-          <h2>Try in My Room</h2>
-          <p>Open the camera and make the product feel like AR inside your room.</p>
-        </div>
-
-        <div class="camera-layout">
-          <div class="camera-info-box">
-            <h3 id="cameraProductTitle">Nakshi Wall Art</h3>
-            <p id="cameraArtist">Artist: Farzana Akter</p>
-            <p id="cameraLocation">Location: Rajshahi, Bangladesh</p>
-            <p id="cameraStory">
-              A handcrafted decorative wall piece inspired by Nakshi patterns and rural storytelling.
-            </p>
-
-            <div class="product-switcher" id="productSwitcher"></div>
-
-            <div class="camera-controls">
-              <button class="btn btn-primary" id="startCamera">Open Camera</button>
-              <button class="btn btn-secondary" id="stopCamera">Stop Camera</button>
-              <button class="btn btn-primary" id="takeShot">Take Screenshot</button>
-            </div>
-
-            <div class="overlay-controls">
-              <button class="control-btn" id="zoomIn">Size +</button>
-              <button class="control-btn" id="zoomOut">Size -</button>
-              <button class="control-btn" id="rotateLeft">Rotate -</button>
-              <button class="control-btn" id="rotateRight">Rotate +</button>
-              <button class="control-btn" id="resetOverlay">Reset</button>
-            </div>
-
-            <div class="mode-controls">
-              <button class="mode-btn active" id="wallMode">Wall Mode</button>
-              <button class="mode-btn" id="floorMode">Floor Mode</button>
-            </div>
-
-            <div class="slider-group">
-              <label for="opacityRange">Opacity</label>
-              <input type="range" id="opacityRange" min="20" max="100" value="100" />
-            </div>
-
-            <p class="small-note">
-              Wall art এর জন্য Wall Mode use করো, তারপর camera screen এ tap করে place করো।
-            </p>
-            <p class="small-note">
-              Furniture এর জন্য Floor Mode use করো।
-            </p>
-            <p class="small-note" id="cameraStatus">Camera is off.</p>
-          </div>
-
-          <div class="camera-stage" id="cameraStage">
-            <video id="cameraPreview" autoplay playsinline muted></video>
-
-            <div class="camera-placeholder" id="cameraPlaceholder">
-              Camera preview will appear here
-            </div>
-
-            <div id="overlayWrapper" class="wall-locked">
-              <div id="overlayShadow"></div>
-              <div id="overlayFrame">
-                <img id="productOverlay" src="images/product-1.png" alt="Product Overlay" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <canvas id="captureCanvas"></canvas>
-
-        <div class="screenshot-box" id="screenshotBox">
-          <h3>Captured Preview</h3>
-          <img id="capturedImage" alt="Captured Room Preview" />
-          <a id="downloadShot" class="btn btn-primary" download="karucart-preview.png">Download Screenshot</a>
-        </div>
-      </div>
-    </section>
   </main>
 
-  <footer class="footer">
-    <div class="container">
-      <p>© 2026 KaruCart Demo — AR-like Camera Projection</p>
+  <!-- Fullscreen Camera Modal -->
+  <div class="camera-modal" id="cameraModal">
+    <video id="cameraPreview" autoplay playsinline muted></video>
+
+    <div class="camera-dim"></div>
+
+    <div class="camera-topbar">
+      <button class="top-btn" id="backBtn">← Back</button>
+      <div class="top-info">
+        <h3 id="cameraProductTitle">Nakshi Wall Art</h3>
+        <p id="cameraArtist">Artist: Farzana Akter</p>
+      </div>
+      <button class="top-btn" id="pinBtn">Pin</button>
     </div>
-  </footer>
+
+    <div class="camera-hint" id="cameraStatus">
+      One finger drag • Two fingers zoom/rotate • Long press to pin
+    </div>
+
+    <div id="overlayWrapper" class="wall-mode">
+      <div id="overlayShadow"></div>
+      <div id="overlayFrame">
+        <img id="productOverlay" src="images/product-1.png" alt="Product Overlay" />
+      </div>
+    </div>
+
+    <div class="camera-bottombar">
+      <button class="bottom-btn" id="wallModeBtn">Wall</button>
+      <button class="bottom-btn" id="floorModeBtn">Floor</button>
+      <button class="bottom-btn" id="resetBtn">Reset</button>
+      <button class="bottom-btn" id="shotBtn">Shot</button>
+    </div>
+  </div>
+
+  <canvas id="captureCanvas"></canvas>
+
+  <div class="shot-preview" id="shotPreview">
+    <div class="shot-card">
+      <h3>Captured Preview</h3>
+      <img id="capturedImage" alt="Captured preview" />
+      <a id="downloadShot" class="btn btn-primary" download="karucart-preview.png">Download</a>
+      <button class="btn btn-secondary" id="closeShot">Close</button>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
