@@ -3,101 +3,316 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KaruCart Fullscreen AR-like Demo</title>
+  <title>KaruCart Demo</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="header">
+  <header class="site-header">
     <div class="container nav">
-      <div class="logo">KaruCart</div>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#products">Products</a></li>
-        </ul>
+      <button class="brand" id="homeBtn">
+        <div class="brand-logo">K</div>
+        <div>
+          <h1>KaruCart</h1>
+          <p>Crafted in Bangladesh</p>
+        </div>
+      </button>
+
+      <nav class="desktop-nav">
+        <a href="#hero">Home</a>
+        <a href="#collections">Collections</a>
+        <a href="#artists">Artists</a>
+        <a href="#trust">Authenticity</a>
       </nav>
+
+      <div class="header-actions">
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="Search products, artists, categories..." />
+        </div>
+        <button class="cart-btn" id="openCartBtn">
+          Cart <span id="cartCount">0</span>
+        </button>
+      </div>
     </div>
   </header>
 
-  <main>
-    <section class="hero" id="home">
+  <main id="mainPage">
+    <section class="hero" id="hero">
       <div class="container hero-grid">
-        <div class="hero-text">
-          <p class="tag">Camera Projection • Fullscreen • AR-like Feel</p>
-          <h1>Preview Handmade Products in Your Room</h1>
+        <div class="hero-content">
+          <span class="eyebrow">Functional Demo • No Database • Plain HTML/CSS/JS</span>
+          <h2>Presenting the artists of Bangladesh to the world.</h2>
           <p>
-            Open the camera in fullscreen and place a product into your room with touch gestures.
+            A premium storytelling-driven demo e-commerce platform where every product has an artist,
+            every art has a story, every piece has certificate-backed authenticity,
+            and customers can preview selected products in their room.
           </p>
           <div class="hero-buttons">
-            <a href="#products" class="btn btn-primary">Explore Products</a>
+            <button class="primary-btn" id="browseBtn">Browse Collections</button>
+            <button class="secondary-btn" id="artistScrollBtn">Meet Artists</button>
+          </div>
+          <div class="hero-stats">
+            <div><strong>6</strong><span>Demo Products</span></div>
+            <div><strong>3</strong><span>Artists</span></div>
+            <div><strong>Secure</strong><span>Certificates</span></div>
+            <div><strong>Live</strong><span>Room Preview</span></div>
           </div>
         </div>
 
         <div class="hero-card">
-          <img src="images/product-1.jpg" alt="Featured product" />
+          <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1200&q=80" alt="Featured art" />
           <div class="hero-card-content">
-            <h3>Nakshi Wall Art</h3>
-            <p>Artist: Farzana Akter</p>
-            <span>Try in My Room Available</span>
+            <p class="mini-label">Featured Story</p>
+            <h3>Nakshi Wall Frame</h3>
+            <p>Rural embroidery-inspired wall art, reimagined for modern homes.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="products">
+    <section class="collections-section" id="collections">
       <div class="container">
         <div class="section-head">
-          <h2>Featured Products</h2>
-          <p>Tap “Try in My Room” to open fullscreen camera preview.</p>
+          <div>
+            <p class="mini-label">Collections</p>
+            <h2>Shop the demo collection</h2>
+          </div>
+          <div class="category-filters" id="categoryFilters"></div>
         </div>
 
         <div class="product-grid" id="productGrid"></div>
       </div>
     </section>
+
+    <section class="trust-section" id="trust">
+      <div class="container trust-grid">
+        <div class="trust-left">
+          <p class="mini-label light">Trust & Authenticity</p>
+          <h2>A certificate system customers can trust</h2>
+          <p>
+            Every product in this demo includes artist-linked identity, certificate preview,
+            story-focused presentation, and making-process video support.
+          </p>
+
+          <div class="trust-cards">
+            <div class="trust-card">
+              <h3>Verified Artist Identity</h3>
+              <p>Every product is linked to a dedicated artist profile.</p>
+            </div>
+            <div class="trust-card">
+              <h3>Story Behind Every Art</h3>
+              <p>Each product details page includes cultural and emotional context.</p>
+            </div>
+            <div class="trust-card">
+              <h3>Protected Authenticity</h3>
+              <p>Every product has a certificate preview and unique code.</p>
+            </div>
+            <div class="trust-card">
+              <h3>Room Preview</h3>
+              <p>Selected products support fullscreen room preview mode.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="trust-right">
+          <div class="info-card">
+            <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1200&q=80" alt="Certificate" />
+            <div class="info-card-body">
+              <h3>Certificate Preview</h3>
+              <p>Trust-focused authenticity card with product code and artist identity.</p>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80" alt="Making video" />
+            <div class="info-card-body">
+              <h3>How It’s Made Video</h3>
+              <p>Open a video modal to show customers how each product is made.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="artists-section" id="artists">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="mini-label">Artists</p>
+            <h2>A dedicated identity for every artist</h2>
+          </div>
+        </div>
+
+        <div class="artist-grid" id="artistGrid"></div>
+      </div>
+    </section>
   </main>
 
-  <!-- Fullscreen Camera Modal -->
-  <div class="camera-modal" id="cameraModal">
-    <video id="cameraPreview" autoplay playsinline muted></video>
+  <!-- Product Modal -->
+  <div class="modal hidden" id="productModal">
+    <div class="modal-overlay" data-close="productModal"></div>
+    <div class="modal-card product-modal-card">
+      <button class="modal-close" data-close="productModal">×</button>
+      <div class="product-modal-layout">
+        <div class="product-gallery">
+          <img id="productMainImage" src="" alt="" />
+          <div class="thumb-row" id="productThumbs"></div>
+        </div>
+        <div class="product-info">
+          <span class="badge" id="productBadge"></span>
+          <h2 id="productTitle"></h2>
+          <p class="artist-line" id="productArtistLine"></p>
+          <div class="price-line" id="productPrice"></div>
+          <p class="story-text" id="productStory"></p>
 
-    <div class="camera-dim"></div>
+          <div class="meta-grid">
+            <div><span>Size</span><strong id="productSize"></strong></div>
+            <div><span>Material</span><strong id="productMaterial"></strong></div>
+            <div><span>Stock</span><strong id="productStock"></strong></div>
+            <div><span>Code</span><strong id="productCode"></strong></div>
+          </div>
 
-    <div class="camera-topbar">
-      <button class="top-btn" id="backBtn">← Back</button>
-      <div class="top-info">
-        <h3 id="cameraProductTitle">Nakshi Wall Art</h3>
-        <p id="cameraArtist">Artist: Farzana Akter</p>
+          <div class="action-grid">
+            <button class="primary-btn" id="addToCartFromModal">Add to Cart</button>
+            <button class="secondary-btn" id="tryRoomFromModal">Try in Your Room</button>
+            <button class="secondary-btn" id="videoFromModal">Watch Making Video</button>
+            <button class="secondary-btn" id="certificateFromModal">View Certificate</button>
+            <button class="secondary-btn" id="artistFromModal">View Artist Profile</button>
+          </div>
+        </div>
       </div>
-      <button class="top-btn" id="pinBtn">Pin</button>
-    </div>
-
-    <div class="camera-hint" id="cameraStatus">
-      One finger drag • Two fingers zoom/rotate • Long press to pin
-    </div>
-
-    <div id="overlayWrapper" class="wall-mode">
-      <div id="overlayShadow"></div>
-      <div id="overlayFrame">
-        <img id="productOverlay" src="images/product-1.png" alt="Product Overlay" />
-      </div>
-    </div>
-
-    <div class="camera-bottombar">
-      <button class="bottom-btn" id="wallModeBtn">Wall</button>
-      <button class="bottom-btn" id="floorModeBtn">Floor</button>
-      <button class="bottom-btn" id="resetBtn">Reset</button>
-      <button class="bottom-btn" id="shotBtn">Shot</button>
     </div>
   </div>
 
-  <canvas id="captureCanvas"></canvas>
+  <!-- Artist Modal -->
+  <div class="modal hidden" id="artistModal">
+    <div class="modal-overlay" data-close="artistModal"></div>
+    <div class="modal-card artist-modal-card">
+      <button class="modal-close" data-close="artistModal">×</button>
+      <div class="artist-layout">
+        <img id="artistImage" src="" alt="" class="artist-profile-image" />
+        <div>
+          <h2 id="artistName"></h2>
+          <p id="artistRegion" class="artist-region"></p>
+          <p id="artistCraft" class="artist-craft"></p>
+          <p id="artistBio" class="artist-bio"></p>
+          <div class="connected-products" id="artistProducts"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <div class="shot-preview" id="shotPreview">
-    <div class="shot-card">
-      <h3>Captured Preview</h3>
-      <img id="capturedImage" alt="Captured preview" />
-      <a id="downloadShot" class="btn btn-primary" download="karucart-preview.png">Download</a>
-      <button class="btn btn-secondary" id="closeShot">Close</button>
+  <!-- Certificate Modal -->
+  <div class="modal hidden" id="certificateModal">
+    <div class="modal-overlay" data-close="certificateModal"></div>
+    <div class="modal-card certificate-card">
+      <button class="modal-close" data-close="certificateModal">×</button>
+      <div class="certificate-inner">
+        <p class="mini-label">KaruCart Verified</p>
+        <h2 id="certProductName"></h2>
+        <div class="meta-grid">
+          <div><span>Artist</span><strong id="certArtist"></strong></div>
+          <div><span>Region</span><strong id="certRegion"></strong></div>
+          <div><span>Material</span><strong id="certMaterial"></strong></div>
+          <div><span>Certificate Code</span><strong id="certCode"></strong></div>
+        </div>
+        <p class="certificate-note">
+          This certificate confirms that the listed product belongs to the KaruCart demo collection
+          and is presented as an artist-linked handcrafted piece with identity and provenance details.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Video Modal -->
+  <div class="modal hidden" id="videoModal">
+    <div class="modal-overlay" data-close="videoModal"></div>
+    <div class="modal-card video-card">
+      <button class="modal-close" data-close="videoModal">×</button>
+      <h2 id="videoTitle"></h2>
+      <video id="makingVideo" controls></video>
+    </div>
+  </div>
+
+  <!-- Cart Drawer -->
+  <div class="drawer hidden" id="cartDrawer">
+    <div class="drawer-overlay" data-close="cartDrawer"></div>
+    <div class="drawer-panel">
+      <div class="drawer-head">
+        <h2>Your Cart</h2>
+        <button class="modal-close" data-close="cartDrawer">×</button>
+      </div>
+      <div id="cartItems"></div>
+      <div class="cart-summary">
+        <div class="summary-row"><span>Subtotal</span><strong id="cartSubtotal">৳ 0</strong></div>
+        <div class="summary-row"><span>Shipping</span><strong>Demo Free</strong></div>
+        <div class="summary-row total"><span>Total</span><strong id="cartTotal">৳ 0</strong></div>
+        <button class="primary-btn full-btn" id="checkoutBtn">Proceed to Checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div class="modal hidden" id="checkoutModal">
+    <div class="modal-overlay" data-close="checkoutModal"></div>
+    <div class="modal-card checkout-card">
+      <button class="modal-close" data-close="checkoutModal">×</button>
+      <h2>Demo Checkout</h2>
+      <div class="checkout-layout">
+        <div class="checkout-form">
+          <label>Full Name<input id="checkoutName" type="text" /></label>
+          <label>Phone Number<input id="checkoutPhone" type="text" /></label>
+          <label>Address<input id="checkoutAddress" type="text" /></label>
+          <label>Order Note<textarea id="checkoutNote" rows="4"></textarea></label>
+        </div>
+        <div class="checkout-summary">
+          <h3>Order Summary</h3>
+          <div id="checkoutItems"></div>
+          <div class="summary-row total"><span>Total</span><strong id="checkoutTotal">৳ 0</strong></div>
+          <button class="primary-btn full-btn" id="placeOrderBtn">Place Demo Order</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div class="modal hidden" id="successModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-card success-card">
+      <h2>Demo Order Placed</h2>
+      <p>Everything worked like a real website, but this is a static demo without a database.</p>
+      <button class="primary-btn" id="successBackBtn">Back to Homepage</button>
+    </div>
+  </div>
+
+  <!-- Fullscreen Room Preview -->
+  <div class="room-preview hidden" id="roomPreview">
+    <video id="roomVideo" autoplay playsinline muted></video>
+    <div class="room-overlay"></div>
+
+    <div class="room-topbar">
+      <button class="top-btn" id="roomBackBtn">← Back</button>
+      <div class="room-info">
+        <h3 id="roomProductTitle"></h3>
+        <p id="roomArtistTitle"></p>
+      </div>
+      <button class="top-btn" id="roomPinBtn">Pin</button>
+    </div>
+
+    <div class="room-hint" id="roomHint">
+      One finger drag • Two fingers zoom/rotate • Long press to pin
+    </div>
+
+    <div id="roomObject" class="wall-mode">
+      <div class="room-shadow"></div>
+      <div class="room-frame">
+        <img id="roomObjectImage" src="" alt="" />
+      </div>
+    </div>
+
+    <div class="room-bottombar">
+      <button class="bottom-btn active" id="roomWallBtn">Wall</button>
+      <button class="bottom-btn" id="roomFloorBtn">Floor</button>
+      <button class="bottom-btn" id="roomResetBtn">Reset</button>
     </div>
   </div>
 
