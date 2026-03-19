@@ -26,6 +26,15 @@ const artists = [
     achievements:['Produced custom pieces for interior projects','Specialist in cane weave finishing','Known for durable handcrafted joinery'],
     skills:['Wood finishing','Cane weaving','Joinery','Interior styling sense'],
     featured:true
+  },
+  {
+    id:'samia-noor', name:'Samia Noor', district:'Rajshahi, Bangladesh', specialty:'Ceramic & Terracotta Surface Art', years:'11 years experience',
+    bio:'Samia creates terracotta and ceramic pieces with soft earthy tones, sculpted texture, and gallery-friendly finishing.',
+    philosophy:'Clay should still feel like earth, even after it becomes art.',
+    longBio:'Samia works with terracotta memory, carved geometry, and a restrained palette to create decorative objects and wall-ready surfaces that feel grounded, elegant, and deeply local. Her practice is especially suited to collectors who want handmade warmth with a refined visual language.',
+    achievements:['Featured in regional craft showcases','Known for matte terracotta finishing','Creates small-batch collectible decor'],
+    skills:['Clay forming','Terracotta carving','Kiln finishing','Surface texturing'],
+    featured:true
   }
 ];
 
@@ -59,16 +68,32 @@ const products = [
     featuredQuote:'A useful object can still feel personal, calm, and beautifully made.', video:'assets/videos/cane-light-stool.mp4'
   },
   {
-    id:'heritage-thread-panel', name:'Heritage Thread Panel', category:'Textile Decor', price:5400, artistId:'farzana-akter', featured:false,
+    id:'heritage-thread-panel', name:'Heritage Thread Panel', category:'Textile Decor', price:5400, artistId:'farzana-akter', featured:true,
     story:'A vertical textile composition for elegant hallway or reading-corner placement.', description:'A premium long-format thread artwork designed for narrow walls and architectural corners.', longDescription:'This piece works well in places that need a vertical visual pause — such as hallway ends, stair landings, prayer corners, or boutique displays.', materials:'Fabric, hand threadwork, mounting support', dimensions:'12 × 36 inches', care:'Indoor display only. Avoid direct humidity.', shipping:'Flat layered pack with protective sheet.', making:['Layout planning','Pattern transfer','Detailed stitch work','Mounting'], certificate:'KC-HTP-2026-004', edition:'Collector Vertical', authenticity:'Story card with authenticity seal'
   },
   {
-    id:'folk-echo-painting', name:'Folk Echo Painting', category:'Painting', price:6800, artistId:'mrinmoy-dey', featured:false,
+    id:'folk-echo-painting', name:'Folk Echo Painting', category:'Painting', price:6800, artistId:'mrinmoy-dey', featured:true,
     story:'A collector-friendly piece with symbolic forms and muted folk-inspired drama.', description:'Elegant enough for formal interiors, warm enough for personal collections.', longDescription:'The visual structure balances emotion and restraint. This makes it suitable for buyers who want a culturally rooted painting without overly loud color.', materials:'Canvas, acrylic, mixed media', dimensions:'20 × 28 inches', care:'Keep dry and away from harsh sunlight.', shipping:'Certificate and protected wrap included.', making:['Drafting','Color blocking','Symbol layering','Finishing coat'], certificate:'KC-FEP-2026-005', edition:'Collector Tone', authenticity:'Signed detail card'
   },
   {
-    id:'woven-side-piece', name:'Woven Side Piece', category:'Furniture', price:8900, artistId:'rakib-hasan', featured:false,
+    id:'woven-side-piece', name:'Woven Side Piece', category:'Furniture', price:8900, artistId:'rakib-hasan', featured:true,
     story:'A small handcrafted side unit that adds tactile warmth to bedrooms and lounges.', description:'Beautiful as a side table, display surface, or decorative utility piece.', longDescription:'Made with practical proportions and a calm finish, this piece is ideal for homes that appreciate natural materials and visible craftsmanship.', materials:'Wood, cane panel, natural finish', dimensions:'18 × 14 × 22 inches', care:'Indoor use only. Wipe with dry cloth.', shipping:'Protective packing with maker card.', making:['Wood shaping','Joinery','Panel weaving','Surface finish'], certificate:'KC-WSP-2026-006', edition:'Home Craft Edit', authenticity:'Craft authentication slip'
+  },
+  {
+    id:'river-bloom-kantha', name:'River Bloom Kantha', category:'Textile Wall Art', price:5900, artistId:'farzana-akter', featured:true,
+    story:'A bloom-filled stitched composition inspired by riverbank flowers and festival fabrics.', description:'Softly layered threadwork designed to bring warmth, color, and handmade quietness to white interiors.', longDescription:'The piece balances floral rhythm with a curated frame, making it suitable for dining nooks, lounges, and bedrooms that need a handcrafted focal point without visual heaviness.', materials:'Cotton textile, dyed thread, framed backing', dimensions:'20 × 20 inches', care:'Keep dry and display away from damp walls.', shipping:'Gift-ready layered wrap with certificate and artist card.', making:['Pattern drawing','Thread selection','Hand stitching','Mounting and finish'], certificate:'KC-RBK-2026-007', edition:'Seasonal Curated Drop', authenticity:'Signed certificate included'
+  },
+  {
+    id:'monsoon-lightscape', name:'Monsoon Lightscape', category:'Painting', price:7100, artistId:'mrinmoy-dey', featured:true,
+    story:'A moody painting of rain-washed light, open fields, and distant rural stillness.', description:'Muted, atmospheric, and refined — ideal for homes that prefer emotion over noise.', longDescription:'Built with layered washes and softened edges, this canvas captures the calm drama of monsoon evenings in a way that suits modern, minimal, or earth-toned interiors.', materials:'Canvas, acrylic wash, texture paste', dimensions:'22 × 30 inches', care:'Avoid direct water contact and prolonged heat.', shipping:'Corner-protected wrap with verification slip.', making:['Mood sketch','Layered wash','Texture balance','Protective seal'], certificate:'KC-MLS-2026-008', edition:'Atmosphere Series', authenticity:'Artist-linked record included'
+  },
+  {
+    id:'terracotta-sun-disc', name:'Terracotta Sun Disc', category:'Ceramic Wall Decor', price:4600, artistId:'samia-noor', featured:true,
+    story:'A circular terracotta wall piece carved with sunburst rhythm and earthy elegance.', description:'A sculpted decorative work for entryways, gallery walls, and warm-toned interiors.', longDescription:'This piece is designed to feel both ancient and contemporary. Its carved surface catches light beautifully and creates shadow depth that changes through the day.', materials:'Terracotta clay, matte seal, hanging mount', dimensions:'16 inch diameter', care:'Indoor display recommended. Dust gently with a dry brush.', shipping:'Foam-supported box with certificate note.', making:['Clay shaping','Sun motif carving','Kiln firing','Matte sealing'], certificate:'KC-TSD-2026-009', edition:'Earth Form Collection', authenticity:'Verified maker certificate'
+  },
+  {
+    id:'clay-story-vase', name:'Clay Story Vase', category:'Ceramic Decor', price:5200, artistId:'samia-noor', featured:true,
+    story:'A handmade terracotta vase with carved band patterns inspired by woven village textures.', description:'Decorative and sculptural, this vase is suited for consoles, shelves, and statement corners.', longDescription:'The silhouette is calm and balanced while the carved surface brings touchable detail. It works beautifully with dried botanicals or as a standalone art object.', materials:'Terracotta, hand carving, natural seal', dimensions:'14 × 9 inches', care:'Best for dry floral display. Wipe gently with dry cloth.', shipping:'Padded pack with artist card and care note.', making:['Forming','Hand carving','Controlled firing','Finishing polish'], certificate:'KC-CSV-2026-010', edition:'Craft Object Edit', authenticity:'Curated authenticity card'
   }
 ];
 
@@ -147,8 +172,8 @@ function cardArtist(a){ return `
   </article>`; }
 
 function renderHome(){
-  byId('featuredProducts').innerHTML = products.filter(p=>p.featured).map(cardProduct).join('');
-  byId('featuredArtists').innerHTML = artists.filter(a=>a.featured).map(cardArtist).join('');
+  byId('featuredProducts').innerHTML = products.slice(0,10).map(cardProduct).join('');
+  byId('featuredArtists').innerHTML = artists.slice(0,4).map(cardArtist).join('');
   const hv = byId('homeVideo');
   if(hv) hv.innerHTML = `<div class="video-panel"><div class="video-placeholder"><div class="play-badge">▶</div></div><div class="video-meta"><div><span class="eyebrow">Studio Film</span><h3 style="font-family:Georgia,serif;font-size:34px;margin:12px 0 8px">Behind the making of Bangladeshi craft</h3><p class="muted">Add your own workshop, artist interview, or making-process video here to make the homepage feel alive and premium.</p></div><a class="btn btn-secondary" href="artworks.html">Explore collection</a></div></div>`;
 }
