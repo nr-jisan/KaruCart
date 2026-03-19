@@ -103,14 +103,15 @@ body:before{
 
 /* Homepage motion/video section */
 .video-panel,.video-placeholder,.film-card{background:rgba(251,247,240,.88);border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow)}
-.video-panel{padding:18px}
+.video-panel{padding:18px;overflow:hidden}
 .video-placeholder{aspect-ratio:16/9;display:grid;place-items:center;position:relative;overflow:hidden;background:
   radial-gradient(circle at 30% 30%, rgba(199,162,92,.35), transparent 20%),
   linear-gradient(135deg,#f1e1ca,#fff 55%,#eadbc6)}
 .video-placeholder:before{content:'Art in Motion';position:absolute;left:28px;bottom:24px;font-family:Georgia,serif;font-size:34px;color:#403124}
 .play-badge{width:88px;height:88px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.9);border:1px solid rgba(109,72,40,.15);box-shadow:var(--shadow);font-size:28px}
 .video-meta{display:flex;justify-content:space-between;gap:18px;align-items:center;padding:18px 6px 4px}
-.inline-video{width:100%;aspect-ratio:16/9;border-radius:24px;border:1px solid var(--line);background:linear-gradient(135deg,#f0e0ca,#fff 60%,#edd9bc);display:grid;place-items:center;position:relative;overflow:hidden}
+.video-frame{width:100%;border-radius:26px;overflow:hidden;border:1px solid var(--line);background:rgba(255,255,255,.42);padding:10px;box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
+.inline-video{width:100%;aspect-ratio:16/9;border-radius:20px;border:1px solid rgba(198,174,145,.45);background:linear-gradient(135deg,#f0e0ca,#fff 60%,#edd9bc);display:grid;place-items:center;position:relative;overflow:hidden}
 .inline-video video{width:100%;height:100%;object-fit:cover;display:block}
 .inline-video.fallback:before{content:'Upload your artwork video here';position:absolute;left:24px;bottom:22px;font-family:Georgia,serif;font-size:30px;color:#4b3928}
 
@@ -288,6 +289,11 @@ body:after{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;opac
 .product-media,.artist-media,.detail-visual,.thumb,.cart-thumb,.video-placeholder,.inline-video.fallback-poster{background-size:cover;background-position:center center;background-repeat:no-repeat;overflow:hidden}
 .product-media::before,.artist-media::before,.detail-visual::before,.thumb::before,.cart-thumb::before{background:rgba(255,252,247,.82);padding:8px 12px;border-radius:14px;backdrop-filter:blur(4px)}
 .detail-visual::before,.thumb::before,.cart-thumb::before{content:none}
-.video-placeholder{background-image:url('assets/images/site/craft-video-poster.jpg');min-height:420px;border-radius:30px;position:relative;overflow:hidden}
+.video-placeholder{background-image:url('assets/images/site/craft-video-poster.jpg');min-height:420px;border-radius:20px;position:relative;overflow:hidden}
 .video-placeholder::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(26,17,10,.08))}
 @media (max-width:760px){.hero-feature-image{min-height:360px}.banner-art-image{min-height:260px}.video-placeholder{min-height:260px}}
+
+.video-placeholder, .inline-video, .inline-video video, .video-placeholder video{max-width:100%;}
+.video-frame video, .inline-video video, .video-placeholder video{display:block;width:100%;height:100%;object-fit:cover;border-radius:inherit;}
+.video-meta{padding:16px 10px 6px}
+@media (max-width:760px){.video-panel{padding:12px}.video-frame{padding:8px;border-radius:22px}.inline-video,.video-placeholder{border-radius:16px}.video-meta{padding:14px 4px 2px}}
