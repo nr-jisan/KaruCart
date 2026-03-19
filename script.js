@@ -2,10 +2,10 @@
 const artists = [
   {
     id:'farzana-akter', name:'Farzana Akter', district:'Jashore, Bangladesh', specialty:'Nakshi Kantha & Textile Storytelling', years:'12 years experience',
-    bio:'Farzana transforms traditional stitch language into premium wall pieces and collectible textile art for contemporary interiors.',
+    bio:'Farzana transforms traditional stitch language into refined wall pieces and collectible textile art for contemporary interiors.',
     philosophy:'Every stitch should carry memory, tenderness, and dignity.',
     longBio:'Working with thread, cloth, memory, and inherited motifs, Farzana creates textile pieces that feel deeply rooted yet highly refined. Her practice focuses on preserving storytelling traditions while presenting them in a form that suits modern homes, galleries, and collectors.',
-    achievements:['Community mentor for emerging women artisans','Curated in local cultural fairs','Known for premium finishing and custom motifs'],
+    achievements:['Community mentor for emerging women artisans','Curated in local cultural fairs','Known for meticulous finishing and custom motifs'],
     skills:['Hand embroidery','Motif composition','Color harmony','Framing and finishing'],
     featured:true
   },
@@ -76,9 +76,9 @@ const products = [
   {
     id:'nakshi-dream-frame', name:'Nakshi Dream Frame', category:'Textile Wall Art', price:4800, artistId:'farzana-akter', featured:true,
     story:'A poetic embroidered wall piece inspired by village memory, river rhythm, and heirloom warmth.',
-    description:'Designed as a premium wall statement, this piece combines heritage motif language with clean framing so that it fits modern apartments, boutique cafes, work lounges, and collector homes.',
+    description:'Designed as a striking wall statement, this piece combines heritage motif language with clean framing so it fits modern apartments, boutique cafés, work lounges, and collector homes.',
     longDescription:'This work is made to feel intimate from a distance and rich up close. The framing gives structure while the hand stitching gives emotional texture. It is ideal for buyers who want both visual softness and cultural identity in one artwork.',
-    materials:'Cotton fabric, premium thread, protective frame, archival backing', dimensions:'18 × 24 inches', care:'Display indoors, avoid direct moisture, dust gently with a microfiber cloth.', shipping:'Packed with layered protection, certificate card, artist story card, and care guide.',
+    materials:'Cotton fabric, fine thread, protective frame, archival backing', dimensions:'18 × 24 inches', care:'Display indoors, avoid direct moisture, dust gently with a microfiber cloth.', shipping:'Packed with layered protection, certificate card, artist story card, and care guide.',
     making:['Motif sketching','Thread palette curation','Hand embroidery','Framing and quality finishing'], certificate:'KC-NDF-2026-001',
     edition:'Curated Edition', authenticity:'Signed artist certificate included',
     featuredQuote:'This frame is meant to feel like inherited tenderness presented as collectible design.', video:'assets/videos/nakshi-dream-frame.mp4'
@@ -103,7 +103,7 @@ const products = [
   },
   {
     id:'heritage-thread-panel', name:'Heritage Thread Panel', category:'Textile Decor', price:5400, artistId:'farzana-akter', featured:true,
-    story:'A vertical textile composition for elegant hallway or reading-corner placement.', description:'A premium long-format thread artwork designed for narrow walls and architectural corners.', longDescription:'This piece works well in places that need a vertical visual pause — such as hallway ends, stair landings, prayer corners, or boutique displays.', materials:'Fabric, hand threadwork, mounting support', dimensions:'12 × 36 inches', care:'Indoor display only. Avoid direct humidity.', shipping:'Flat layered pack with protective sheet.', making:['Layout planning','Pattern transfer','Detailed stitch work','Mounting'], certificate:'KC-HTP-2026-004', edition:'Collector Vertical', authenticity:'Story card with authenticity seal'
+    story:'A vertical textile composition for elegant hallway or reading-corner placement.', description:'A long-format thread artwork designed for narrow walls and architectural corners.', longDescription:'This piece works well in places that need a vertical visual pause — such as hallway ends, stair landings, prayer corners, or boutique displays.', materials:'Fabric, hand threadwork, mounting support', dimensions:'12 × 36 inches', care:'Indoor display only. Avoid direct humidity.', shipping:'Flat layered pack with protective sheet.', making:['Layout planning','Pattern transfer','Detailed stitch work','Mounting'], certificate:'KC-HTP-2026-004', edition:'Collector Vertical', authenticity:'Story card with authenticity seal'
   },
   {
     id:'folk-echo-painting', name:'Folk Echo Painting', category:'Painting', price:6800, artistId:'mrinmoy-dey', featured:true,
@@ -217,7 +217,7 @@ function renderHome(){
   byId('featuredProducts').innerHTML = products.slice(0, productCount).map(cardProduct).join('');
   byId('featuredArtists').innerHTML = artists.slice(0, artistCount).map(cardArtist).join('');
   const hv = byId('homeVideo');
-  if(hv){ const src=assetImages.videos.homeStudioFilm || ''; hv.innerHTML = `<div class="video-panel">${src ? `<video class="video-placeholder" controls playsinline src="${src}"></video>` : `<div class="video-placeholder"><div class="play-badge">▶</div></div>`}<div class="video-meta"><div><span class="eyebrow">Studio Film</span><h3 style="font-family:Georgia,serif;font-size:34px;margin:12px 0 8px">Behind the making of Bangladeshi craft</h3><p class="muted">Replace the poster with your own workshop, artist interview, or making-process video by using <strong>assets/videos/home-studio-film.mp4</strong>.</p></div><a class="btn btn-secondary" href="artworks.html">Explore collection</a></div></div>`; }
+  if(hv){ const src=assetImages.videos.homeStudioFilm || ''; hv.innerHTML = `<div class="video-panel">${src ? `<video class="video-placeholder" controls playsinline src="${src}"></video>` : `<div class="video-placeholder"><div class="play-badge">▶</div></div>`}<div class="video-meta"><div><span class="eyebrow">Studio Film</span><h3 style="font-family:Georgia,serif;font-size:34px;margin:12px 0 8px">Inside the making of Bangladeshi craft</h3><p class="muted">Watch the hands, materials, and rhythms behind the works featured on KaruCart.</p></div><a class="btn btn-secondary" href="artworks.html">Explore collection</a></div></div>`; }
 }
 function renderArtistsPage(){ byId('artistList').innerHTML = artists.map(cardArtist).join(''); }
 function renderArtworksPage(){ byId('artworkList').innerHTML = products.map(cardProduct).join(''); }
@@ -246,7 +246,7 @@ function renderProductDetail(){
   byId('productDetails').innerHTML = `
     <div class="grid-2">
       <div class="detail-card card-body"><h3>Story</h3><p>${p.story}</p><p>${p.longDescription}</p></div>
-      <div class="detail-card card-body"><h3>What arrives with the piece</h3><ul class="bullet-list"><li>Authenticity certificate</li><li>Artist story card</li><li>Care guide</li><li>Protected premium packaging</li></ul></div>
+      <div class="detail-card card-body"><h3>What arrives with the piece</h3><ul class="bullet-list"><li>Authenticity certificate</li><li>Artist story card</li><li>Care guide</li><li>Protective presentation packaging</li></ul></div>
       <div class="detail-card card-body"><h3>Care guide</h3><p>${p.care}</p></div>
       <div class="detail-card card-body"><h3>Shipping concept</h3><p>${p.shipping}</p></div>
     </div>`;
@@ -254,7 +254,7 @@ function renderProductDetail(){
   byId('certificateBox').innerHTML = `<div class="detail-card card-body"><h3>Authenticity & certificate</h3><div class="certificate-meta"><div><strong>Certificate Code:</strong> ${p.certificate}</div><div><strong>Edition:</strong> ${p.edition || 'Curated Edition'}</div><div><strong>Verification Page:</strong> <a href="certificate.html?id=${p.id}">View digital certificate</a></div></div></div>`;
   if(byId('productVideo')){
     const src = p.video || '';
-    byId('productVideo').innerHTML = `<div class="section-head"><div><span class="eyebrow">Video Story</span><h2>See the artwork in motion</h2><p class="muted">This section can hold your own product video, process film, or styled room presentation.</p></div></div><div class="video-panel"><div class="inline-video ${src ? '' : 'fallback'}">${src ? `<video controls playsinline src="${src}"></video>` : `<div class="play-badge">▶</div>`}</div><div class="video-meta"><div><h3 style="font-family:Georgia,serif;font-size:30px;margin:0 0 8px">${p.name} film section</h3><p class="muted">Replace this placeholder with your own MP4 video to show how the piece is made, displayed, or styled in a room.</p></div><a class="btn btn-secondary" href="certificate.html?id=${p.id}">View certificate</a></div></div>`;
+    byId('productVideo').innerHTML = `<div class="section-head"><div><span class="eyebrow">Video Story</span><h2>See the artwork in motion</h2><p class="muted">See the piece in context through a process film, studio view, or interior presentation.</p></div></div><div class="video-panel"><div class="inline-video ${src ? '' : 'fallback'}">${src ? `<video controls playsinline src="${src}"></video>` : `<div class="play-badge">▶</div>`}</div><div class="video-meta"><div><h3 style="font-family:Georgia,serif;font-size:30px;margin:0 0 8px">${p.name} film section</h3><p class="muted">This film offers a closer look at the making process, final detailing, or how the piece lives inside a space.</p></div><a class="btn btn-secondary" href="certificate.html?id=${p.id}">View certificate</a></div></div>`;
   }
   byId('relatedWorks').innerHTML = products.filter(x=>x.artistId===a.id && x.id!==p.id).slice(0,3).map(cardProduct).join('');
 }
@@ -270,7 +270,7 @@ function renderCartPage(){
 function renderCheckout(){
   const subtotal=state.cart.reduce((s,i)=>s+getProduct(i.id).price*i.qty,0), shipping=350, total=subtotal+shipping;
   const summary = state.cart.length ? state.cart.map(i=>{const p=getProduct(i.id); return `<div class="meta-list"><div><span>${p.name} × ${i.qty}</span><strong>${money(p.price*i.qty)}</strong></div></div>`}).join('') : '<p class="muted">No items in cart.</p>';
-  if(byId('checkoutSummary')) byId('checkoutSummary').innerHTML=`<div class="checkout-box card-body"><h3>Order summary</h3>${summary}<div class="meta-list"><div><span>Shipping</span><strong>${money(shipping)}</strong></div><div><span>Total</span><strong>${money(total)}</strong></div></div><a class="btn" style="margin-top:18px;width:100%" href="confirmation.html">Confirm demo order</a></div>`;
+  if(byId('checkoutSummary')) byId('checkoutSummary').innerHTML=`<div class="checkout-box card-body"><h3>Order summary</h3>${summary}<div class="meta-list"><div><span>Shipping</span><strong>${money(shipping)}</strong></div><div><span>Total</span><strong>${money(total)}</strong></div></div><a class="btn" style="margin-top:18px;width:100%" href="confirmation.html">Confirm order</a></div>`;
 }
 function renderConfirmation(){
   const orderNo = 'KC-ORD-' + new Date().getFullYear() + '-' + String(new Date().getMonth()+1).padStart(2,'0') + String(new Date().getDate()).padStart(2,'0');
@@ -279,7 +279,7 @@ function renderConfirmation(){
 }
 function renderCertificate(){
   const p=getProduct(qs().get('id') || products[0].id), a=getArtist(p.artistId); if(!p) return;
-  byId('certificatePanel').innerHTML=`<div class="certificate-shell"><div class="certificate-paper"><div class="cert-kicker"><div class="cert-brand"><span class="eyebrow">Official Verification</span><h2>KaruCart</h2><p>Curated Bangladeshi art & craft verification record</p></div><div class="cert-seal">VERIFIED<br>ARTWORK</div></div><h1 class="cert-title">Certificate of Authenticity</h1><p class="cert-lead">This document certifies that <strong>${p.name}</strong> is a curated artist-linked work presented by KaruCart and created by <strong>${a.name}</strong>. The piece has been assigned the following reference information for identity, storytelling, and future traceability.</p><div class="cert-grid"><div class="cert-box"><h4>Artwork</h4><div class="cert-value">${p.name}</div><p class="muted">${p.story}</p></div><div class="cert-box"><h4>Certificate Code</h4><div class="cert-value">${p.certificate}</div><p class="muted">Verified demo record</p></div><div class="cert-box"><h4>Artist</h4><div class="cert-value">${a.name}</div><p class="muted">${a.specialty}</p></div><div class="cert-box"><h4>Edition & Status</h4><div class="cert-value">${p.edition || 'Curated Edition'}</div><p class="muted">Status: Verified by KaruCart</p></div></div><div class="cert-footer"><div class="sig-line"><strong>KaruCart Curatorial Desk</strong><span class="muted">Issued by platform verification</span></div><div class="sig-line"><strong>${a.name}</strong><span class="muted">Artist attribution record</span></div><div class="sig-line"><div class="cert-qr"></div><span class="muted">Future QR verification area</span></div></div><div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px"><a class="btn" href="product.html?id=${p.id}">Back to artwork</a><a class="btn btn-secondary" href="artworks.html">Browse collection</a></div></div></div>`;
+  byId('certificatePanel').innerHTML=`<div class="certificate-shell"><div class="certificate-paper"><div class="cert-kicker"><div class="cert-brand"><span class="eyebrow">Official Verification</span><h2>KaruCart</h2><p>Curated Bangladeshi art & craft verification record</p></div><div class="cert-seal">VERIFIED<br>ARTWORK</div></div><h1 class="cert-title">Certificate of Authenticity</h1><p class="cert-lead">This document certifies that <strong>${p.name}</strong> is a curated artist-linked work presented by KaruCart and created by <strong>${a.name}</strong>. The piece has been assigned the following reference information for identity, storytelling, and future traceability.</p><div class="cert-grid"><div class="cert-box"><h4>Artwork</h4><div class="cert-value">${p.name}</div><p class="muted">${p.story}</p></div><div class="cert-box"><h4>Certificate Code</h4><div class="cert-value">${p.certificate}</div><p class="muted">Verified KaruCart record</p></div><div class="cert-box"><h4>Artist</h4><div class="cert-value">${a.name}</div><p class="muted">${a.specialty}</p></div><div class="cert-box"><h4>Edition & Status</h4><div class="cert-value">${p.edition || 'Curated Edition'}</div><p class="muted">Status: Verified by KaruCart</p></div></div><div class="cert-footer"><div class="sig-line"><strong>KaruCart Curatorial Desk</strong><span class="muted">Issued by KaruCart Curatorial Desk</span></div><div class="sig-line"><strong>${a.name}</strong><span class="muted">Artist attribution record</span></div><div class="sig-line"><div class="cert-qr"></div><span class="muted">Digital verification mark</span></div></div><div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px"><a class="btn" href="product.html?id=${p.id}">Back to artwork</a><a class="btn btn-secondary" href="artworks.html">Browse collection</a></div></div></div>`;
 }
 
 function setupRevealAnimations(){
