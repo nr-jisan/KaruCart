@@ -1,767 +1,246 @@
+
 const artists = [
   {
-    id: "farzana-akter",
-    name: "Farzana Akter",
-    region: "Rajshahi, Bangladesh",
-    craft: "Nakshi-inspired wall decor",
-    bio: "Farzana blends traditional stitch-inspired patterns with modern wall aesthetics, creating handcrafted pieces rooted in rural visual language.",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80",
-    story: "Her work is inspired by village embroidery, family memory, and decorative storytelling traditions.",
+    id:'farzana-akter', name:'Farzana Akter', district:'Jashore, Bangladesh', specialty:'Nakshi Kantha & Textile Storytelling', years:'12 years experience',
+    bio:'Farzana transforms traditional stitch language into premium wall pieces and collectible textile art for contemporary interiors.',
+    philosophy:'Every stitch should carry memory, tenderness, and dignity.',
+    longBio:'Working with thread, cloth, memory, and inherited motifs, Farzana creates textile pieces that feel deeply rooted yet highly refined. Her practice focuses on preserving storytelling traditions while presenting them in a form that suits modern homes, galleries, and collectors.',
+    achievements:['Community mentor for emerging women artisans','Curated in local cultural fairs','Known for premium finishing and custom motifs'],
+    skills:['Hand embroidery','Motif composition','Color harmony','Framing and finishing'],
+    featured:true
   },
   {
-    id: "rakib-hossain",
-    name: "Rakib Hossain",
-    region: "Sylhet, Bangladesh",
-    craft: "Hand-carved wooden furniture",
-    bio: "Rakib works with inherited woodcraft techniques and adapts them for contemporary homes.",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80",
-    story: "He learned woodworking from his father and now creates compact statement furniture.",
+    id:'mrinmoy-dey', name:'Mrinmoy Dey', district:'Khulna, Bangladesh', specialty:'Folk-inspired Canvas Painting', years:'9 years experience',
+    bio:'Mrinmoy blends folk memory, rural atmosphere, and minimal modern composition into statement paintings.',
+    philosophy:'Culture should feel alive, not frozen in nostalgia.',
+    longBio:'Mrinmoy paints with layered restraint. His works borrow emotional rhythm from folk references but present them with contemporary balance, muted sophistication, and collector-friendly execution.',
+    achievements:['Featured in independent art circles','Known for textured mixed media surfaces','Works commissioned for boutique interiors'],
+    skills:['Acrylic layering','Mixed media texture','Collector curation','Interior scale planning'],
+    featured:true
   },
   {
-    id: "mehjabin-noor",
-    name: "Mehjabin Noor",
-    region: "Dhaka, Bangladesh",
-    craft: "Folk painting & visual storytelling",
-    bio: "Mehjabin paints vibrant folk-inspired compositions that preserve memory, rhythm, and culture.",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=900&q=80",
-    story: "Her paintings reinterpret the emotional color and rhythm of folk life through a modern lens.",
-  },
+    id:'rakib-hasan', name:'Rakib Hasan', district:'Cumilla, Bangladesh', specialty:'Cane & Wood Furniture Craft', years:'15 years experience',
+    bio:'Rakib designs furniture that feels warm, light, handmade, and suitable for modern spaces.',
+    philosophy:'Furniture should be useful first, beautiful always.',
+    longBio:'Rakib works at the meeting point of practicality and artistry. His cane and wood pieces are shaped to feel breathable, elegant, and rooted in the craft language of Bangladesh while fitting clean contemporary interiors.',
+    achievements:['Produced custom pieces for interior projects','Specialist in cane weave finishing','Known for durable handcrafted joinery'],
+    skills:['Wood finishing','Cane weaving','Joinery','Interior styling sense'],
+    featured:true
+  }
 ];
 
 const products = [
   {
-    id: 1,
-    name: "Nakshi Wall Frame",
-    category: "Wall Decor",
-    artistId: "farzana-akter",
-    price: 3500,
-    size: "24 x 18 in",
-    material: "Fabric, wood, mixed media",
-    stock: 4,
-    badge: "Certificate Included",
-    rating: 4.9,
-    image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=1200&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&w=1200&q=80"
-    ],
-    overlay: "https://pngimg.com/d/picture_frame_PNG90.png",
-    story: "Inspired by Nakshi motifs and household memory, this frame turns embroidery-inspired geometry into a warm decorative statement piece.",
-    makingVideo: "https://www.w3schools.com/html/mov_bbb.mp4",
-    certificateCode: "KC-NWF-24091",
+    id:'nakshi-dream-frame', name:'Nakshi Dream Frame', category:'Textile Wall Art', price:4800, artistId:'farzana-akter', featured:true,
+    story:'A poetic embroidered wall piece inspired by village memory, river rhythm, and heirloom warmth.',
+    description:'Designed as a premium wall statement, this piece combines heritage motif language with clean framing so that it fits modern apartments, boutique cafes, work lounges, and collector homes.',
+    longDescription:'This work is made to feel intimate from a distance and rich up close. The framing gives structure while the hand stitching gives emotional texture. It is ideal for buyers who want both visual softness and cultural identity in one artwork.',
+    materials:'Cotton fabric, premium thread, protective frame, archival backing', dimensions:'18 × 24 inches', care:'Display indoors, avoid direct moisture, dust gently with a microfiber cloth.', shipping:'Packed with layered protection, certificate card, artist story card, and care guide.',
+    making:['Motif sketching','Thread palette curation','Hand embroidery','Framing and quality finishing'], certificate:'KC-NDF-2026-001',
+    edition:'Curated Edition', authenticity:'Signed artist certificate included',
+    featuredQuote:'This frame is meant to feel like inherited tenderness presented as collectible design.', video:'assets/videos/nakshi-dream-frame.mp4'
   },
   {
-    id: 2,
-    name: "Hand-Carved Accent Chair",
-    category: "Furniture",
-    artistId: "rakib-hossain",
-    price: 8900,
-    size: "Single Seater",
-    material: "Solid wood, hand polish",
-    stock: 2,
-    badge: "Try In Your Room",
-    rating: 4.8,
-    image: "https://images.unsplash.com/photo-1519947486511-46149fa0a254?auto=format&fit=crop&w=1200&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1519947486511-46149fa0a254?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1501045661006-fcebe0257c3f?auto=format&fit=crop&w=1200&q=80"
-    ],
-    overlay: "https://pngimg.com/d/chair_PNG6881.png",
-    story: "A compact, heritage-inspired accent chair shaped by hand-carving traditions and updated for stylish modern interiors.",
-    makingVideo: "https://www.w3schools.com/html/movie.mp4",
-    certificateCode: "KC-HAC-24092",
+    id:'golden-river-canvas', name:'Golden River Canvas', category:'Painting', price:6200, artistId:'mrinmoy-dey', featured:true,
+    story:'A layered painting inspired by sunlight on slow water and the stillness of rural afternoons.',
+    description:'This mixed-media canvas carries movement without noise. It works beautifully in study rooms, lounges, reception spaces, and statement walls that need warmth without clutter.',
+    longDescription:'The work uses soft directional flow, controlled texture, and folk memory to create something that feels calm yet alive. It is especially suitable for interiors that want cultural depth with modern restraint.',
+    materials:'Canvas, acrylic, textured medium, protective varnish', dimensions:'24 × 30 inches', care:'Keep away from harsh water and prolonged direct sunlight.', shipping:'Protective edge guards, padded wrap, artist note, and certificate included.',
+    making:['Concept sketch','Base wash layering','Texture and tone balancing','Final sealing'], certificate:'KC-GRC-2026-002', edition:'Studio Selection', authenticity:'Numbered authenticity card included',
+    featuredQuote:'Color should move like memory — quietly, but with presence.', video:'assets/videos/golden-river-canvas.mp4'
   },
   {
-    id: 3,
-    name: "Folk Canvas Painting",
-    category: "Painting",
-    artistId: "mehjabin-noor",
-    price: 4200,
-    size: "20 x 20 in",
-    material: "Acrylic on canvas",
-    stock: 6,
-    badge: "Artist Story",
-    rating: 4.7,
-    image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1200&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&w=1200&q=80"
-    ],
-    overlay: "https://pngimg.com/d/picture_frame_PNG90.png",
-    story: "This composition translates folk rhythm, movement, and emotional color into a decorative artwork meant to carry cultural energy.",
-    makingVideo: "https://www.w3schools.com/html/mov_bbb.mp4",
-    certificateCode: "KC-FCP-24093",
+    id:'cane-light-stool', name:'Cane Light Stool', category:'Furniture', price:7600, artistId:'rakib-hasan', featured:true,
+    story:'A refined handcrafted stool that turns everyday function into a warm interior accent.',
+    description:'Lightweight but expressive, this stool works beside reading chairs, bedsides, studio corners, and curated retail interiors.',
+    longDescription:'The structure is practical, yet the woven seat and natural finish give it the warmth of a handcrafted object. It is ideal for people who want furniture with softness, character, and artisan credibility.',
+    materials:'Seasoned wood, handwoven cane, matte finish', dimensions:'16 × 16 × 20 inches', care:'Indoor use recommended. Wipe dry and avoid standing water.', shipping:'Secure boxed packaging with soft wrapping and care insert.',
+    making:['Wood sizing','Frame assembly','Hand weaving','Polish and inspection'], certificate:'KC-CLS-2026-003', edition:'Interior Craft Series', authenticity:'Craft certificate and maker note included',
+    featuredQuote:'A useful object can still feel personal, calm, and beautifully made.', video:'assets/videos/cane-light-stool.mp4'
   },
   {
-    id: 4,
-    name: "Clay Heritage Vase",
-    category: "Decor",
-    artistId: "farzana-akter",
-    price: 2700,
-    size: "Medium",
-    material: "Hand-shaped clay",
-    stock: 5,
-    badge: "Limited Craft",
-    rating: 4.6,
-    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1517705008128-361805f42e86?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1200&q=80"
-    ],
-    overlay: "https://pngimg.com/d/vase_PNG44.png",
-    story: "A village-inspired decorative vase with organic texture, earthy tone, and handcrafted imperfections that make each piece unique.",
-    makingVideo: "https://www.w3schools.com/html/movie.mp4",
-    certificateCode: "KC-CHV-24094",
+    id:'heritage-thread-panel', name:'Heritage Thread Panel', category:'Textile Decor', price:5400, artistId:'farzana-akter', featured:false,
+    story:'A vertical textile composition for elegant hallway or reading-corner placement.', description:'A premium long-format thread artwork designed for narrow walls and architectural corners.', longDescription:'This piece works well in places that need a vertical visual pause — such as hallway ends, stair landings, prayer corners, or boutique displays.', materials:'Fabric, hand threadwork, mounting support', dimensions:'12 × 36 inches', care:'Indoor display only. Avoid direct humidity.', shipping:'Flat layered pack with protective sheet.', making:['Layout planning','Pattern transfer','Detailed stitch work','Mounting'], certificate:'KC-HTP-2026-004', edition:'Collector Vertical', authenticity:'Story card with authenticity seal'
   },
   {
-    id: 5,
-    name: "Woven Table Accent",
-    category: "Handcrafted Decor",
-    artistId: "rakib-hossain",
-    price: 1900,
-    size: "Small",
-    material: "Jute and wood",
-    stock: 8,
-    badge: "New Arrival",
-    rating: 4.5,
-    image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1517705008128-361805f42e86?auto=format&fit=crop&w=1200&q=80"
-    ],
-    overlay: "https://pngimg.com/d/vase_PNG44.png",
-    story: "An accent piece designed to celebrate natural texture and handmade warmth in compact spaces.",
-    makingVideo: "https://www.w3schools.com/html/mov_bbb.mp4",
-    certificateCode: "KC-WTA-24095",
+    id:'folk-echo-painting', name:'Folk Echo Painting', category:'Painting', price:6800, artistId:'mrinmoy-dey', featured:false,
+    story:'A collector-friendly piece with symbolic forms and muted folk-inspired drama.', description:'Elegant enough for formal interiors, warm enough for personal collections.', longDescription:'The visual structure balances emotion and restraint. This makes it suitable for buyers who want a culturally rooted painting without overly loud color.', materials:'Canvas, acrylic, mixed media', dimensions:'20 × 28 inches', care:'Keep dry and away from harsh sunlight.', shipping:'Certificate and protected wrap included.', making:['Drafting','Color blocking','Symbol layering','Finishing coat'], certificate:'KC-FEP-2026-005', edition:'Collector Tone', authenticity:'Signed detail card'
   },
   {
-    id: 6,
-    name: "Heritage Wall Mirror",
-    category: "Wall Decor",
-    artistId: "mehjabin-noor",
-    price: 5100,
-    size: "30 x 20 in",
-    material: "Wood and mirror",
-    stock: 3,
-    badge: "Premium Pick",
-    rating: 4.8,
-    image: "https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?auto=format&fit=crop&w=1200&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&w=1200&q=80"
-    ],
-    overlay: "https://pngimg.com/d/picture_frame_PNG90.png",
-    story: "A decorative wall mirror framed with heritage-inspired craft details for warm, elegant spaces.",
-    makingVideo: "https://www.w3schools.com/html/movie.mp4",
-    certificateCode: "KC-HWM-24096",
-  },
+    id:'woven-side-piece', name:'Woven Side Piece', category:'Furniture', price:8900, artistId:'rakib-hasan', featured:false,
+    story:'A small handcrafted side unit that adds tactile warmth to bedrooms and lounges.', description:'Beautiful as a side table, display surface, or decorative utility piece.', longDescription:'Made with practical proportions and a calm finish, this piece is ideal for homes that appreciate natural materials and visible craftsmanship.', materials:'Wood, cane panel, natural finish', dimensions:'18 × 14 × 22 inches', care:'Indoor use only. Wipe with dry cloth.', shipping:'Protective packing with maker card.', making:['Wood shaping','Joinery','Panel weaving','Surface finish'], certificate:'KC-WSP-2026-006', edition:'Home Craft Edit', authenticity:'Craft authentication slip'
+  }
 ];
 
-const categories = ["All", "Wall Decor", "Furniture", "Painting", "Decor", "Handcrafted Decor"];
+const state = { cart: JSON.parse(localStorage.getItem('karucart-cart-v2') || '[]') };
+const money = n => `৳${n.toLocaleString()}`;
+const byId = id => document.getElementById(id);
+const getArtist = id => artists.find(a => a.id === id);
+const getProduct = id => products.find(p => p.id === id);
+const qs = () => new URLSearchParams(location.search);
+const saveCart = () => localStorage.setItem('karucart-cart-v2', JSON.stringify(state.cart));
 
-let selectedCategory = "All";
-let searchText = "";
-let cart = [];
-let selectedProduct = null;
-let selectedArtist = null;
-
-/* Room preview state */
-let roomStream = null;
-let roomPinned = false;
-let roomMode = "wall";
-let roomState = { x: 0, y: 0, scale: 1, rotation: -2 };
-let roomGesture = null;
-let roomLongPress = null;
-let baseBeta = null;
-let baseGamma = null;
-
-const productGrid = document.getElementById("productGrid");
-const artistGrid = document.getElementById("artistGrid");
-const categoryFilters = document.getElementById("categoryFilters");
-const searchInput = document.getElementById("searchInput");
-
-function formatPrice(value) {
-  return `৳ ${value.toLocaleString()}`;
-}
-
-function getArtistById(id) {
-  return artists.find(a => a.id === id);
-}
-
-function renderCategories() {
-  categoryFilters.innerHTML = "";
-  categories.forEach(cat => {
-    const btn = document.createElement("button");
-    btn.className = `filter-btn ${selectedCategory === cat ? "active" : ""}`;
-    btn.textContent = cat;
-    btn.onclick = () => {
-      selectedCategory = cat;
-      renderCategories();
-      renderProducts();
-    };
-    categoryFilters.appendChild(btn);
+function updateHeaderBehavior(){
+  const header=document.querySelector('.site-header'); if(!header) return;
+  let lastY=window.scrollY;
+  window.addEventListener('scroll',()=>{
+    const y=window.scrollY;
+    if(y<=20){header.classList.remove('header-hidden'); lastY=y; return;}
+    if(y>lastY+5) header.classList.add('header-hidden');
+    else if(y<lastY-5) header.classList.remove('header-hidden');
+    lastY=y;
   });
 }
+function setupMobileMenu(){
+  const btn=byId('mobileMenuBtn'), panel=byId('mobilePanel');
+  if(!btn||!panel) return;
+  btn.addEventListener('click',()=>panel.classList.toggle('show'));
+}
+function updateCartCount(){
+  const count=state.cart.reduce((s,i)=>s+i.qty,0);
+  document.querySelectorAll('[data-cart-count]').forEach(el=>el.textContent=count);
+}
+function getToastWrap(){
+  let wrap=document.querySelector('.toast-wrap');
+  if(!wrap){
+    wrap=document.createElement('div');
+    wrap.className='toast-wrap';
+    document.body.appendChild(wrap);
+  }
+  return wrap;
+}
+function showToast(title, text){
+  const wrap=getToastWrap();
+  const toast=document.createElement('div');
+  toast.className='toast';
+  toast.innerHTML=`<div class="toast-head"><div style="display:flex;align-items:center;gap:10px"><div class="toast-icon">✓</div><div><strong>${title}</strong></div></div><button class="toast-close" aria-label="Close">×</button></div><p>${text}</p><div class="toast-actions"><a class="primary" href="cart.html">View cart</a><button type="button" class="toast-continue">Continue</button></div>`;
+  wrap.appendChild(toast);
+  const remove=()=>{ toast.style.opacity='0'; toast.style.transform='translateY(10px)'; setTimeout(()=>toast.remove(),220); };
+  toast.querySelector('.toast-close').addEventListener('click', remove);
+  toast.querySelector('.toast-continue').addEventListener('click', remove);
+  setTimeout(remove, 3200);
+}
+function addToCart(id){
+  const p=getProduct(id); const found=state.cart.find(i=>i.id===id);
+  if(found) found.qty += 1; else state.cart.push({id, qty:1});
+  saveCart(); updateCartCount();
+  if(p) showToast('Added to cart', `${p.name} has been added to your curated order.`);
+}
+function changeQty(id, delta){
+  const item=state.cart.find(i=>i.id===id); if(!item) return;
+  item.qty += delta; if(item.qty<=0) state.cart=state.cart.filter(i=>i.id!==id); saveCart(); updateCartCount(); renderCartPage();
+}
+function productVisual(title){return `<div class="product-media" data-title="${title}"></div>`}
+function artistVisual(title){return `<div class="artist-media" data-title="${title}"></div>`}
+function cardProduct(p){ const a=getArtist(p.artistId); return `
+  <article class="product-card">${productVisual(p.name)}
+    <div class="card-body"><span class="tag">${p.category}</span><h3><a href="product.html?id=${p.id}">${p.name}</a></h3>
+    <p class="small muted">By <a href="artist.html?id=${a.id}">${a.name}</a></p><p>${p.story}</p>
+    <div class="card-meta"><strong>${money(p.price)}</strong><div style="display:flex;gap:10px"><a class="btn btn-secondary btn-small" href="product.html?id=${p.id}">View details</a><button class="btn btn-small" data-add-cart="${p.id}">Add to cart</button></div></div></div>
+  </article>`; }
+function cardArtist(a){ return `
+  <article class="artist-card">${artistVisual(a.name)}
+    <div class="card-body"><span class="tag">${a.district}</span><h3><a href="artist.html?id=${a.id}">${a.name}</a></h3>
+    <p class="small muted">${a.specialty} • ${a.years}</p><p>${a.bio}</p>
+    <div class="artist-meta"><a class="btn btn-secondary btn-small" href="artist.html?id=${a.id}">Full profile</a><span class="small muted">${products.filter(p=>p.artistId===a.id).length} works listed</span></div></div>
+  </article>`; }
 
-function renderProducts() {
-  const filtered = products.filter(product => {
-    const artist = getArtistById(product.artistId);
-    const matchesSearch =
-      [product.name, product.category, artist.name, artist.region]
-        .join(" ")
-        .toLowerCase()
-        .includes(searchText.toLowerCase());
+function renderHome(){
+  byId('featuredProducts').innerHTML = products.filter(p=>p.featured).map(cardProduct).join('');
+  byId('featuredArtists').innerHTML = artists.filter(a=>a.featured).map(cardArtist).join('');
+  const hv = byId('homeVideo');
+  if(hv) hv.innerHTML = `<div class="video-panel"><div class="video-placeholder"><div class="play-badge">▶</div></div><div class="video-meta"><div><span class="eyebrow">Studio Film</span><h3 style="font-family:Georgia,serif;font-size:34px;margin:12px 0 8px">Behind the making of Bangladeshi craft</h3><p class="muted">Add your own workshop, artist interview, or making-process video here to make the homepage feel alive and premium.</p></div><a class="btn btn-secondary" href="artworks.html">Explore collection</a></div></div>`;
+}
+function renderArtistsPage(){ byId('artistList').innerHTML = artists.map(cardArtist).join(''); }
+function renderArtworksPage(){ byId('artworkList').innerHTML = products.map(cardProduct).join(''); }
+function renderArtistDetail(){
+  const a=getArtist(qs().get('id') || artists[0].id); if(!a) return;
+  byId('artistHero').innerHTML = `
+    <div class="detail-visual" data-title="${a.name}"></div>
+    <div><span class="eyebrow">Artist Profile</span><h1>${a.name}</h1><p>${a.longBio}</p>
+      <div class="meta-list"><div><span>Specialty</span><strong>${a.specialty}</strong></div><div><span>District</span><strong>${a.district}</strong></div><div><span>Experience</span><strong>${a.years}</strong></div><div><span>Philosophy</span><strong>${a.philosophy}</strong></div></div>
+    </div>`;
+  byId('artistStory').innerHTML = `<div class="quote-block">“${a.philosophy}”</div>`;
+  byId('artistAchievements').innerHTML = `<div class="detail-card card-body"><h3>Achievements</h3><ul class="bullet-list">${a.achievements.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
+  byId('artistSkills').innerHTML = `<div class="detail-card card-body"><h3>Craft Skills</h3><ul class="bullet-list">${a.skills.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
+  byId('artistWorks').innerHTML = products.filter(p=>p.artistId===a.id).map(cardProduct).join('');
+}
+function renderProductDetail(){
+  const p=getProduct(qs().get('id') || products[0].id); if(!p) return; const a=getArtist(p.artistId);
+  byId('productHero').innerHTML = `
+    <div><div class="detail-visual" data-title="${p.name}"></div>
+      <div class="gallery-grid"><div class="thumb" data-label="Front View"></div><div class="thumb" data-label="Texture Detail"></div><div class="thumb" data-label="Styled Interior"></div></div></div>
+    <div><span class="eyebrow">${p.category}</span><h1>${p.name}</h1><p>${p.description}</p>
+      <div class="price-wrap"><div><div class="small muted">Curated price</div><div class="price">${money(p.price)}</div></div><button class="btn" data-add-cart="${p.id}">Add to cart</button></div>
+      <div class="meta-list"><div><span>Artist</span><strong><a href="artist.html?id=${a.id}">${a.name}</a></strong></div><div><span>Materials</span><strong>${p.materials}</strong></div><div><span>Dimensions</span><strong>${p.dimensions}</strong></div><div><span>Edition</span><strong>${p.edition || 'Curated Edition'}</strong></div><div><span>Authenticity</span><strong>${p.authenticity || 'Certificate included'}</strong></div></div>
+    </div>`;
+  byId('productStory').innerHTML = `<div class="quote-block">“${p.featuredQuote || p.story}”</div>`;
+  byId('productDetails').innerHTML = `
+    <div class="grid-2">
+      <div class="detail-card card-body"><h3>Story</h3><p>${p.story}</p><p>${p.longDescription}</p></div>
+      <div class="detail-card card-body"><h3>What arrives with the piece</h3><ul class="bullet-list"><li>Authenticity certificate</li><li>Artist story card</li><li>Care guide</li><li>Protected premium packaging</li></ul></div>
+      <div class="detail-card card-body"><h3>Care guide</h3><p>${p.care}</p></div>
+      <div class="detail-card card-body"><h3>Shipping concept</h3><p>${p.shipping}</p></div>
+    </div>`;
+  byId('makingSteps').innerHTML = `<div class="detail-card card-body"><h3>How it is made</h3><ol class="steps">${p.making.map(x=>`<li>${x}</li>`).join('')}</ol></div>`;
+  byId('certificateBox').innerHTML = `<div class="detail-card card-body"><h3>Authenticity & certificate</h3><div class="certificate-meta"><div><strong>Certificate Code:</strong> ${p.certificate}</div><div><strong>Edition:</strong> ${p.edition || 'Curated Edition'}</div><div><strong>Verification Page:</strong> <a href="certificate.html?id=${p.id}">View digital certificate</a></div></div></div>`;
+  if(byId('productVideo')){
+    const src = p.video || '';
+    byId('productVideo').innerHTML = `<div class="section-head"><div><span class="eyebrow">Video Story</span><h2>See the artwork in motion</h2><p class="muted">This section can hold your own product video, process film, or styled room presentation.</p></div></div><div class="video-panel"><div class="inline-video ${src ? '' : 'fallback'}">${src ? `<video controls playsinline src="${src}"></video>` : `<div class="play-badge">▶</div>`}</div><div class="video-meta"><div><h3 style="font-family:Georgia,serif;font-size:30px;margin:0 0 8px">${p.name} film section</h3><p class="muted">Replace this placeholder with your own MP4 video to show how the piece is made, displayed, or styled in a room.</p></div><a class="btn btn-secondary" href="certificate.html?id=${p.id}">View certificate</a></div></div>`;
+  }
+  byId('relatedWorks').innerHTML = products.filter(x=>x.artistId===a.id && x.id!==p.id).slice(0,3).map(cardProduct).join('');
+}
+function renderCartPage(){
+  const wrap=byId('cartItemsPage'); if(!wrap) return;
+  if(!state.cart.length){ wrap.innerHTML=`<div class="detail-card card-body"><h3>Your cart is empty</h3><p class="muted">Browse the curated collection and add a few handcrafted pieces.</p><a class="btn" href="artworks.html">Explore artworks</a></div>`; if(byId('cartSummary')) byId('cartSummary').innerHTML=''; return; }
+  const items=state.cart.map(i=>{const p=getProduct(i.id), a=getArtist(p.artistId); return `
+    <div class="cart-row"><div class="cart-thumb" data-title="${p.name}"></div><div><h3 style="margin:0 0 6px">${p.name}</h3><p class="small muted">By ${a.name}</p><p class="muted">${p.story}</p><div class="qty-wrap"><button data-qty="-1" data-id="${p.id}">−</button><span>${i.qty}</span><button data-qty="1" data-id="${p.id}">+</button></div></div><strong>${money(p.price*i.qty)}</strong></div>`}).join('');
+  wrap.innerHTML=items;
+  const subtotal=state.cart.reduce((s,i)=>s+getProduct(i.id).price*i.qty,0), shipping=350, total=subtotal+shipping;
+  byId('cartSummary').innerHTML=`<div class="checkout-box card-body"><h3>Order Summary</h3><div class="meta-list"><div><span>Subtotal</span><strong>${money(subtotal)}</strong></div><div><span>Curated packaging</span><strong>${money(shipping)}</strong></div><div><span>Total</span><strong>${money(total)}</strong></div></div><a class="btn" style="margin-top:18px;width:100%" href="checkout.html">Proceed to checkout</a></div>`;
+}
+function renderCheckout(){
+  const subtotal=state.cart.reduce((s,i)=>s+getProduct(i.id).price*i.qty,0), shipping=350, total=subtotal+shipping;
+  const summary = state.cart.length ? state.cart.map(i=>{const p=getProduct(i.id); return `<div class="meta-list"><div><span>${p.name} × ${i.qty}</span><strong>${money(p.price*i.qty)}</strong></div></div>`}).join('') : '<p class="muted">No items in cart.</p>';
+  if(byId('checkoutSummary')) byId('checkoutSummary').innerHTML=`<div class="checkout-box card-body"><h3>Order summary</h3>${summary}<div class="meta-list"><div><span>Shipping</span><strong>${money(shipping)}</strong></div><div><span>Total</span><strong>${money(total)}</strong></div></div><a class="btn" style="margin-top:18px;width:100%" href="confirmation.html">Confirm demo order</a></div>`;
+}
+function renderConfirmation(){
+  const orderNo = 'KC-ORD-' + new Date().getFullYear() + '-' + String(new Date().getMonth()+1).padStart(2,'0') + String(new Date().getDate()).padStart(2,'0');
+  if(byId('orderNumber')) byId('orderNumber').textContent = orderNo;
+  if(byId('confirmedItems')) byId('confirmedItems').innerHTML = state.cart.map(i=>{const p=getProduct(i.id); return `<li>${p.name} × ${i.qty}</li>`}).join('') || '<li>No cart items found.</li>';
+}
+function renderCertificate(){
+  const p=getProduct(qs().get('id') || products[0].id), a=getArtist(p.artistId); if(!p) return;
+  byId('certificatePanel').innerHTML=`<div class="certificate-shell"><div class="certificate-paper"><div class="cert-kicker"><div class="cert-brand"><span class="eyebrow">Official Verification</span><h2>KaruCart</h2><p>Curated Bangladeshi art & craft verification record</p></div><div class="cert-seal">VERIFIED<br>ARTWORK</div></div><h1 class="cert-title">Certificate of Authenticity</h1><p class="cert-lead">This document certifies that <strong>${p.name}</strong> is a curated artist-linked work presented by KaruCart and created by <strong>${a.name}</strong>. The piece has been assigned the following reference information for identity, storytelling, and future traceability.</p><div class="cert-grid"><div class="cert-box"><h4>Artwork</h4><div class="cert-value">${p.name}</div><p class="muted">${p.story}</p></div><div class="cert-box"><h4>Certificate Code</h4><div class="cert-value">${p.certificate}</div><p class="muted">Verified demo record</p></div><div class="cert-box"><h4>Artist</h4><div class="cert-value">${a.name}</div><p class="muted">${a.specialty}</p></div><div class="cert-box"><h4>Edition & Status</h4><div class="cert-value">${p.edition || 'Curated Edition'}</div><p class="muted">Status: Verified by KaruCart</p></div></div><div class="cert-footer"><div class="sig-line"><strong>KaruCart Curatorial Desk</strong><span class="muted">Issued by platform verification</span></div><div class="sig-line"><strong>${a.name}</strong><span class="muted">Artist attribution record</span></div><div class="sig-line"><div class="cert-qr"></div><span class="muted">Future QR verification area</span></div></div><div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px"><a class="btn" href="product.html?id=${p.id}">Back to artwork</a><a class="btn btn-secondary" href="artworks.html">Browse collection</a></div></div></div>`;
+}
 
-    const matchesCategory = selectedCategory === "All" || product.category === selectedCategory;
-    return matchesSearch && matchesCategory;
+function setupRevealAnimations(){
+  const targets=[...document.querySelectorAll('.section, .section-tight, .product-card, .artist-card, .detail-card, .value-card, .timeline-card, .testimonial, .kpi, .stat, .video-panel')];
+  targets.forEach(el=>el.classList.add('reveal'));
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{ if(entry.isIntersecting) entry.target.classList.add('is-visible'); });
+  },{threshold:.12});
+  targets.forEach(el=>io.observe(el));
+}
+
+function bindEvents(){
+  document.addEventListener('click', e=>{
+    const add=e.target.closest('[data-add-cart]'); if(add){ addToCart(add.dataset.addCart); }
+    const qty=e.target.closest('[data-qty]'); if(qty){ changeQty(qty.dataset.id, Number(qty.dataset.qty)); }
   });
-
-  productGrid.innerHTML = "";
-
-  filtered.forEach(product => {
-    const artist = getArtistById(product.artistId);
-
-    const card = document.createElement("div");
-    card.className = "product-card";
-
-    card.innerHTML = `
-      <img src="${product.image}" alt="${product.name}">
-      <div class="product-card-body">
-        <div class="product-top">
-          <div>
-            <span class="badge">${product.badge}</span>
-            <h3 style="margin-top:12px;">${product.name}</h3>
-            <p class="artist-name">by ${artist.name}</p>
-          </div>
-          <span class="region-pill">${artist.region.split(",")[0]}</span>
-        </div>
-        <div class="product-price">${formatPrice(product.price)}</div>
-        <div class="product-actions">
-          <button class="primary-btn" data-product="${product.id}" data-action="details">View Details</button>
-          <button class="secondary-btn" data-product="${product.id}" data-action="room">Try Room</button>
-        </div>
-        <button class="try-btn" data-product="${product.id}" data-action="cart">Add to Cart</button>
-      </div>
-    `;
-
-    productGrid.appendChild(card);
-  });
 }
-
-function renderArtists() {
-  artistGrid.innerHTML = "";
-
-  artists.forEach(artist => {
-    const card = document.createElement("div");
-    card.className = "artist-card";
-    card.innerHTML = `
-      <img src="${artist.image}" alt="${artist.name}">
-      <div class="artist-card-body">
-        <h3>${artist.name}</h3>
-        <p class="artist-region">${artist.region}</p>
-        <p class="artist-craft">${artist.craft}</p>
-        <p class="artist-bio">${artist.bio}</p>
-        <button class="primary-btn artist-btn" data-artist="${artist.id}">View Profile</button>
-      </div>
-    `;
-    artistGrid.appendChild(card);
-  });
+function init(){
+  updateHeaderBehavior(); setupMobileMenu(); updateCartCount(); bindEvents();
+  const page=document.body.dataset.page;
+  if(page==='home') renderHome();
+  if(page==='artists') renderArtistsPage();
+  if(page==='artworks') renderArtworksPage();
+  if(page==='artist') renderArtistDetail();
+  if(page==='product') renderProductDetail();
+  if(page==='cart') renderCartPage();
+  if(page==='checkout') renderCheckout();
+  if(page==='confirmation') renderConfirmation();
+  if(page==='certificate') renderCertificate();
+  setupRevealAnimations();
 }
-
-function openModal(id) {
-  document.getElementById(id).classList.remove("hidden");
-}
-
-function closeModal(id) {
-  document.getElementById(id).classList.add("hidden");
-}
-
-function openProductModal(product) {
-  selectedProduct = product;
-  const artist = getArtistById(product.artistId);
-
-  document.getElementById("productBadge").textContent = product.badge;
-  document.getElementById("productTitle").textContent = product.name;
-  document.getElementById("productArtistLine").textContent = `${artist.name} • ${artist.region}`;
-  document.getElementById("productPrice").textContent = formatPrice(product.price);
-  document.getElementById("productStory").textContent = product.story;
-  document.getElementById("productSize").textContent = product.size;
-  document.getElementById("productMaterial").textContent = product.material;
-  document.getElementById("productStock").textContent = `${product.stock} available`;
-  document.getElementById("productCode").textContent = product.certificateCode;
-
-  const mainImage = document.getElementById("productMainImage");
-  mainImage.src = product.gallery[0];
-  mainImage.alt = product.name;
-
-  const thumbs = document.getElementById("productThumbs");
-  thumbs.innerHTML = "";
-  product.gallery.forEach((img, index) => {
-    const thumb = document.createElement("img");
-    thumb.src = img;
-    thumb.alt = product.name;
-    if (index === 0) thumb.classList.add("active");
-    thumb.onclick = () => {
-      mainImage.src = img;
-      thumbs.querySelectorAll("img").forEach(t => t.classList.remove("active"));
-      thumb.classList.add("active");
-    };
-    thumbs.appendChild(thumb);
-  });
-
-  openModal("productModal");
-}
-
-function openArtistModal(artist) {
-  selectedArtist = artist;
-  document.getElementById("artistImage").src = artist.image;
-  document.getElementById("artistName").textContent = artist.name;
-  document.getElementById("artistRegion").textContent = artist.region;
-  document.getElementById("artistCraft").textContent = artist.craft;
-  document.getElementById("artistBio").textContent = artist.bio + " " + artist.story;
-
-  const related = products.filter(p => p.artistId === artist.id);
-  const wrap = document.getElementById("artistProducts");
-  wrap.innerHTML = "";
-
-  related.forEach(product => {
-    const el = document.createElement("div");
-    el.className = "connected-card";
-    el.innerHTML = `
-      <img src="${product.image}" alt="${product.name}">
-      <div>
-        <h4>${product.name}</h4>
-        <p>${formatPrice(product.price)}</p>
-      </div>
-    `;
-    el.onclick = () => {
-      closeModal("artistModal");
-      openProductModal(product);
-    };
-    wrap.appendChild(el);
-  });
-
-  openModal("artistModal");
-}
-
-function openCertificate(product) {
-  const artist = getArtistById(product.artistId);
-  document.getElementById("certProductName").textContent = product.name;
-  document.getElementById("certArtist").textContent = artist.name;
-  document.getElementById("certRegion").textContent = artist.region;
-  document.getElementById("certMaterial").textContent = product.material;
-  document.getElementById("certCode").textContent = product.certificateCode;
-  openModal("certificateModal");
-}
-
-function openVideo(product) {
-  document.getElementById("videoTitle").textContent = `How ${product.name} Was Made`;
-  const video = document.getElementById("makingVideo");
-  video.src = product.makingVideo;
-  openModal("videoModal");
-}
-
-function addToCart(product) {
-  const found = cart.find(item => item.id === product.id);
-  if (found) {
-    found.qty += 1;
-  } else {
-    cart.push({ ...product, qty: 1 });
-  }
-  updateCartCount();
-  renderCart();
-  openModal("cartDrawer");
-}
-
-function updateCartCount() {
-  const count = cart.reduce((sum, item) => sum + item.qty, 0);
-  document.getElementById("cartCount").textContent = count;
-  document.getElementById("cartCount").style.display = count > 0 ? "inline-block" : "inline-block";
-}
-
-function renderCart() {
-  const cartItems = document.getElementById("cartItems");
-  const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-
-  cartItems.innerHTML = "";
-
-  if (cart.length === 0) {
-    cartItems.innerHTML = `<div class="cart-summary"><p style="color:#6b5748;">Your cart is empty.</p></div>`;
-  } else {
-    cart.forEach(item => {
-      const el = document.createElement("div");
-      el.className = "cart-item";
-      el.innerHTML = `
-        <img src="${item.image}" alt="${item.name}">
-        <div style="flex:1;">
-          <h4>${item.name}</h4>
-          <p>${formatPrice(item.price)}</p>
-          <div class="cart-controls">
-            <button class="qty-btn" data-cart="${item.id}" data-type="minus">−</button>
-            <strong>${item.qty}</strong>
-            <button class="qty-btn" data-cart="${item.id}" data-type="plus">+</button>
-            <button class="remove-link" data-cart="${item.id}" data-type="remove">Remove</button>
-          </div>
-        </div>
-      `;
-      cartItems.appendChild(el);
-    });
-  }
-
-  document.getElementById("cartSubtotal").textContent = formatPrice(subtotal);
-  document.getElementById("cartTotal").textContent = formatPrice(subtotal);
-
-  const checkoutItems = document.getElementById("checkoutItems");
-  checkoutItems.innerHTML = "";
-  cart.forEach(item => {
-    const row = document.createElement("div");
-    row.className = "summary-row";
-    row.innerHTML = `<span>${item.name} × ${item.qty}</span><strong>${formatPrice(item.price * item.qty)}</strong>`;
-    checkoutItems.appendChild(row);
-  });
-  document.getElementById("checkoutTotal").textContent = formatPrice(subtotal);
-}
-
-/* Room Preview */
-const roomPreview = document.getElementById("roomPreview");
-const roomVideo = document.getElementById("roomVideo");
-const roomObject = document.getElementById("roomObject");
-const roomObjectImage = document.getElementById("roomObjectImage");
-const roomHint = document.getElementById("roomHint");
-const roomProductTitle = document.getElementById("roomProductTitle");
-const roomArtistTitle = document.getElementById("roomArtistTitle");
-const roomPinBtn = document.getElementById("roomPinBtn");
-const roomWallBtn = document.getElementById("roomWallBtn");
-const roomFloorBtn = document.getElementById("roomFloorBtn");
-
-async function openRoomPreview(product) {
-  selectedProduct = product;
-  const artist = getArtistById(product.artistId);
-
-  roomProductTitle.textContent = product.name;
-  roomArtistTitle.textContent = artist.name;
-  roomObjectImage.src = product.overlay;
-
-  roomMode = product.category === "Furniture" ? "floor" : "wall";
-  applyRoomMode();
-  resetRoomObject();
-
-  roomPreview.classList.remove("hidden");
-  document.body.style.overflow = "hidden";
-
-  try {
-    if (roomStream) stopRoomPreview();
-
-    roomStream = await navigator.mediaDevices.getUserMedia({
-      video: { facingMode: { ideal: "environment" } },
-      audio: false
-    });
-
-    roomVideo.srcObject = roomStream;
-
-    if (
-      typeof DeviceOrientationEvent !== "undefined" &&
-      typeof DeviceOrientationEvent.requestPermission === "function"
-    ) {
-      try {
-        await DeviceOrientationEvent.requestPermission();
-      } catch (e) {}
-    }
-  } catch (e) {
-    roomHint.textContent = "Camera failed. Use localhost or HTTPS and allow permission.";
-  }
-}
-
-function stopRoomPreview() {
-  if (roomStream) {
-    roomStream.getTracks().forEach(track => track.stop());
-    roomStream = null;
-  }
-  roomVideo.srcObject = null;
-  roomPreview.classList.add("hidden");
-  document.body.style.overflow = "";
-}
-
-function applyRoomMode() {
-  roomObject.classList.remove("wall-mode", "floor-mode");
-  roomObject.classList.add(`${roomMode}-mode`);
-
-  roomWallBtn.classList.toggle("active", roomMode === "wall");
-  roomFloorBtn.classList.toggle("active", roomMode === "floor");
-
-  roomState.rotation = roomMode === "wall" ? -2 : 0;
-  roomHint.textContent = "One finger drag • Two fingers zoom/rotate • Long press to pin";
-}
-
-function resetRoomObject() {
-  roomPinned = false;
-  roomPinBtn.textContent = "Pin";
-  roomObject.classList.remove("pinned");
-  roomState = {
-    x: 0,
-    y: 0,
-    scale: 1,
-    rotation: roomMode === "wall" ? -2 : 0
-  };
-  baseBeta = null;
-  baseGamma = null;
-  updateRoomTransform();
-}
-
-function updateRoomTransform(tiltX = 0, tiltY = 0) {
-  const finalRotation = roomState.rotation + tiltY;
-  roomObject.style.transform =
-    `translate(-50%, -50%) translate(${roomState.x}px, ${roomState.y}px) scale(${roomState.scale}) rotate(${finalRotation}deg) perspective(900px) rotateX(${-tiltX}deg) rotateY(${tiltY * 0.4}deg)`;
-}
-
-function getDistance(t1, t2) {
-  return Math.hypot(t2.clientX - t1.clientX, t2.clientY - t1.clientY);
-}
-
-function getAngle(t1, t2) {
-  return Math.atan2(t2.clientY - t1.clientY, t2.clientX - t1.clientX) * 180 / Math.PI;
-}
-
-function clearRoomLongPress() {
-  if (roomLongPress) {
-    clearTimeout(roomLongPress);
-    roomLongPress = null;
-  }
-}
-
-roomObject.addEventListener("touchstart", (e) => {
-  if (roomPinned) return;
-
-  if (e.touches.length === 1) {
-    const t = e.touches[0];
-    roomGesture = {
-      type: "drag",
-      startX: t.clientX,
-      startY: t.clientY,
-      initialX: roomState.x,
-      initialY: roomState.y
-    };
-
-    roomLongPress = setTimeout(() => {
-      roomPinned = true;
-      roomPinBtn.textContent = "Unpin";
-      roomHint.textContent = "Pinned. Move phone to see slight tilt effect.";
-    }, 550);
-  }
-
-  if (e.touches.length === 2) {
-    clearRoomLongPress();
-    const [t1, t2] = e.touches;
-    roomGesture = {
-      type: "pinch",
-      distance: getDistance(t1, t2),
-      angle: getAngle(t1, t2),
-      initialScale: roomState.scale,
-      initialRotation: roomState.rotation
-    };
-  }
-}, { passive: true });
-
-window.addEventListener("touchmove", (e) => {
-  if (roomPreview.classList.contains("hidden")) return;
-  if (!roomGesture || roomPinned) return;
-
-  if (roomGesture.type === "drag" && e.touches.length === 1) {
-    const t = e.touches[0];
-    const dx = t.clientX - roomGesture.startX;
-    const dy = t.clientY - roomGesture.startY;
-
-    if (Math.abs(dx) > 6 || Math.abs(dy) > 6) clearRoomLongPress();
-
-    roomState.x = roomGesture.initialX + dx;
-    roomState.y = roomGesture.initialY + dy;
-    updateRoomTransform();
-  }
-
-  if (roomGesture.type === "pinch" && e.touches.length === 2) {
-    clearRoomLongPress();
-    const [t1, t2] = e.touches;
-    const scaleFactor = getDistance(t1, t2) / roomGesture.distance;
-    const angleDiff = getAngle(t1, t2) - roomGesture.angle;
-
-    roomState.scale = Math.max(0.2, Math.min(4, roomGesture.initialScale * scaleFactor));
-    roomState.rotation = roomGesture.initialRotation + angleDiff;
-    updateRoomTransform();
-  }
-}, { passive: true });
-
-window.addEventListener("touchend", () => {
-  roomGesture = null;
-  clearRoomLongPress();
-});
-
-window.addEventListener("deviceorientation", (event) => {
-  if (roomPreview.classList.contains("hidden")) return;
-  if (!roomPinned) return;
-  if (event.beta == null || event.gamma == null) return;
-
-  if (baseBeta === null) baseBeta = event.beta;
-  if (baseGamma === null) baseGamma = event.gamma;
-
-  const deltaBeta = Math.max(-12, Math.min(12, (event.beta - baseBeta) * 0.12));
-  const deltaGamma = Math.max(-12, Math.min(12, (event.gamma - baseGamma) * 0.12));
-
-  updateRoomTransform(deltaBeta, deltaGamma);
-});
-
-/* Events */
-document.addEventListener("click", (e) => {
-  const productId = e.target.dataset.product;
-  const action = e.target.dataset.action;
-  const artistId = e.target.dataset.artist;
-  const cartId = e.target.dataset.cart;
-  const closeId = e.target.dataset.close;
-
-  if (closeId) {
-    closeModal(closeId);
-    if (closeId === "videoModal") {
-      const video = document.getElementById("makingVideo");
-      video.pause();
-      video.src = "";
-    }
-    return;
-  }
-
-  if (artistId) {
-    const artist = artists.find(a => a.id === artistId);
-    openArtistModal(artist);
-  }
-
-  if (productId && action) {
-    const product = products.find(p => p.id === Number(productId));
-    if (action === "details") openProductModal(product);
-    if (action === "room") openRoomPreview(product);
-    if (action === "cart") addToCart(product);
-  }
-
-  if (cartId) {
-    const item = cart.find(i => i.id === Number(cartId));
-    if (!item) return;
-
-    const type = e.target.dataset.type;
-    if (type === "plus") item.qty += 1;
-    if (type === "minus") item.qty = Math.max(1, item.qty - 1);
-    if (type === "remove") cart = cart.filter(i => i.id !== item.id);
-
-    updateCartCount();
-    renderCart();
-  }
-});
-
-document.getElementById("searchInput").addEventListener("input", (e) => {
-  searchText = e.target.value;
-  renderProducts();
-});
-
-document.getElementById("openCartBtn").onclick = () => {
-  renderCart();
-  openModal("cartDrawer");
-};
-
-document.getElementById("browseBtn").onclick = () => {
-  document.getElementById("collections").scrollIntoView({ behavior: "smooth" });
-};
-
-document.getElementById("artistScrollBtn").onclick = () => {
-  document.getElementById("artists").scrollIntoView({ behavior: "smooth" });
-};
-
-document.getElementById("homeBtn").onclick = () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-};
-
-document.getElementById("addToCartFromModal").onclick = () => {
-  addToCart(selectedProduct);
-};
-
-document.getElementById("tryRoomFromModal").onclick = () => {
-  closeModal("productModal");
-  openRoomPreview(selectedProduct);
-};
-
-document.getElementById("videoFromModal").onclick = () => {
-  openVideo(selectedProduct);
-};
-
-document.getElementById("certificateFromModal").onclick = () => {
-  openCertificate(selectedProduct);
-};
-
-document.getElementById("artistFromModal").onclick = () => {
-  const artist = getArtistById(selectedProduct.artistId);
-  closeModal("productModal");
-  openArtistModal(artist);
-};
-
-document.getElementById("checkoutBtn").onclick = () => {
-  closeModal("cartDrawer");
-  renderCart();
-  openModal("checkoutModal");
-};
-
-document.getElementById("placeOrderBtn").onclick = () => {
-  cart = [];
-  renderCart();
-  updateCartCount();
-  closeModal("checkoutModal");
-  openModal("successModal");
-};
-
-document.getElementById("successBackBtn").onclick = () => {
-  closeModal("successModal");
-  window.scrollTo({ top: 0, behavior: "smooth" });
-};
-
-document.getElementById("roomBackBtn").onclick = () => {
-  stopRoomPreview();
-};
-
-document.getElementById("roomPinBtn").onclick = () => {
-  roomPinned = !roomPinned;
-  roomPinBtn.textContent = roomPinned ? "Unpin" : "Pin";
-  roomHint.textContent = roomPinned
-    ? "Pinned. Move phone to see slight tilt effect."
-    : "One finger drag • Two fingers zoom/rotate • Long press to pin";
-  if (!roomPinned) {
-    baseBeta = null;
-    baseGamma = null;
-    updateRoomTransform();
-  }
-};
-
-document.getElementById("roomWallBtn").onclick = () => {
-  roomMode = "wall";
-  applyRoomMode();
-  resetRoomObject();
-};
-
-document.getElementById("roomFloorBtn").onclick = () => {
-  roomMode = "floor";
-  applyRoomMode();
-  resetRoomObject();
-};
-
-document.getElementById("roomResetBtn").onclick = () => {
-  resetRoomObject();
-};
-
-function init() {
-  renderCategories();
-  renderProducts();
-  renderArtists();
-  renderCart();
-  updateCartCount();
-}
-
-init();
+document.addEventListener('DOMContentLoaded', init);
