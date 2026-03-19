@@ -132,17 +132,18 @@ function changeQty(id, delta){
 }
 function productVisual(title){return `<div class="product-media" data-title="${title}"></div>`}
 function artistVisual(title){return `<div class="artist-media" data-title="${title}"></div>`}
+function compactText(text, max=88){ if(!text) return ''; return text.length>max ? text.slice(0,max).trim()+"…" : text; }
 function cardProduct(p){ const a=getArtist(p.artistId); return `
   <article class="product-card">${productVisual(p.name)}
     <div class="card-body"><span class="tag">${p.category}</span><h3><a href="product.html?id=${p.id}">${p.name}</a></h3>
-    <p class="small muted">By <a href="artist.html?id=${a.id}">${a.name}</a></p><p>${p.story}</p>
-    <div class="card-meta"><strong>${money(p.price)}</strong><div style="display:flex;gap:10px"><a class="btn btn-secondary btn-small" href="product.html?id=${p.id}">View details</a><button class="btn btn-small" data-add-cart="${p.id}">Add to cart</button></div></div></div>
+    <p class="small muted">By <a href="artist.html?id=${a.id}">${a.name}</a></p><p class="card-desc">${compactText(p.story, 92)}</p>
+    <div class="card-meta"><strong class="product-price">${money(p.price)}</strong><div style="display:flex;gap:10px"><a class="btn btn-secondary btn-small" href="product.html?id=${p.id}">Details</a><button class="btn btn-small" data-add-cart="${p.id}">Add to cart</button></div></div></div>
   </article>`; }
 function cardArtist(a){ return `
   <article class="artist-card">${artistVisual(a.name)}
     <div class="card-body"><span class="tag">${a.district}</span><h3><a href="artist.html?id=${a.id}">${a.name}</a></h3>
-    <p class="small muted">${a.specialty} • ${a.years}</p><p>${a.bio}</p>
-    <div class="artist-meta"><a class="btn btn-secondary btn-small" href="artist.html?id=${a.id}">Full profile</a><span class="small muted">${products.filter(p=>p.artistId===a.id).length} works listed</span></div></div>
+    <p class="small muted">${compactText(a.specialty, 30)}</p><p class="card-desc">${compactText(a.bio, 78)}</p>
+    <div class="artist-meta"><a class="btn btn-secondary btn-small" href="artist.html?id=${a.id}">View profile</a><span class="small muted">${products.filter(p=>p.artistId===a.id).length} works</span></div></div>
   </article>`; }
 
 function renderHome(){
