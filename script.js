@@ -38,6 +38,40 @@ const artists = [
   }
 ];
 
+const assetImages = {
+  artists: {
+    'farzana-akter': 'assets/images/artists/farzana-akter.jpg',
+    'mrinmoy-dey': 'assets/images/artists/mrinmoy-dey.jpg',
+    'rakib-hasan': 'assets/images/artists/rakib-hasan.jpg',
+    'samia-noor': 'assets/images/artists/samia-noor.jpg'
+  },
+  products: {
+    'nakshi-dream-frame': 'assets/images/products/nakshi-dream-frame.jpg',
+    'golden-river-canvas': 'assets/images/products/golden-river-canvas.jpg',
+    'cane-light-stool': 'assets/images/products/cane-light-stool.jpg',
+    'heritage-thread-panel': 'assets/images/products/heritage-thread-panel.jpg',
+    'folk-echo-painting': 'assets/images/products/folk-echo-painting.jpg',
+    'woven-side-piece': 'assets/images/products/woven-side-piece.jpg',
+    'river-bloom-kantha': 'assets/images/products/river-bloom-kantha.jpg',
+    'monsoon-lightscape': 'assets/images/products/monsoon-lightscape.jpg',
+    'terracotta-sun-disc': 'assets/images/products/terracotta-sun-disc.jpg',
+    'clay-story-vase': 'assets/images/products/clay-story-vase.jpg'
+  },
+  site: {
+    heroFeature: 'assets/images/site/hero-feature.jpg',
+    brandStory: 'assets/images/site/brand-story.jpg',
+    studioPoster: 'assets/images/site/studio-film-poster.jpg',
+    craftVideoPoster: 'assets/images/site/craft-video-poster.jpg'
+  },
+  videos: {
+    homeStudioFilm: 'assets/videos/home-studio-film.mp4'
+  }
+};
+function productImage(id){ return assetImages.products[id] || ''; }
+function artistImage(id){ return assetImages.artists[id] || ''; }
+function bgStyle(url){ return url ? ` style="background-image:url('${url}')"` : ''; }
+
+
 const products = [
   {
     id:'nakshi-dream-frame', name:'Nakshi Dream Frame', category:'Textile Wall Art', price:4800, artistId:'farzana-akter', featured:true,
@@ -155,17 +189,17 @@ function changeQty(id, delta){
   const item=state.cart.find(i=>i.id===id); if(!item) return;
   item.qty += delta; if(item.qty<=0) state.cart=state.cart.filter(i=>i.id!==id); saveCart(); updateCartCount(); renderCartPage();
 }
-function productVisual(title){return `<div class="product-media" data-title="${title}"></div>`}
-function artistVisual(title){return `<div class="artist-media" data-title="${title}"></div>`}
+function productVisual(id,title){return `<div class="product-media" data-title="${title}"${bgStyle(productImage(id))}></div>`}
+function artistVisual(id,title){return `<div class="artist-media" data-title="${title}"${bgStyle(artistImage(id))}></div>`}
 function compactText(text, max=88){ if(!text) return ''; return text.length>max ? text.slice(0,max).trim()+"…" : text; }
 function cardProduct(p){ const a=getArtist(p.artistId); return `
-  <article class="product-card">${productVisual(p.name)}
+  <article class="product-card">${productVisual(p.id,p.name)}
     <div class="card-body"><span class="tag">${p.category}</span><h3><a href="product.html?id=${p.id}">${p.name}</a></h3>
     <p class="small muted">By <a href="artist.html?id=${a.id}">${a.name}</a></p><p class="card-desc">${compactText(p.story, 92)}</p>
     <div class="card-meta"><strong class="product-price">${money(p.price)}</strong><div style="display:flex;gap:10px"><a class="btn btn-secondary btn-small" href="product.html?id=${p.id}">Details</a><button class="btn btn-small" data-add-cart="${p.id}">Add to cart</button></div></div></div>
   </article>`; }
 function cardArtist(a){ return `
-  <article class="artist-card">${artistVisual(a.name)}
+  <article class="artist-card">${artistVisual(a.id,a.name)}
     <div class="card-body"><span class="tag">${a.district}</span><h3><a href="artist.html?id=${a.id}">${a.name}</a></h3>
     <p class="small muted">${compactText(a.specialty, 30)}</p><p class="card-desc">${compactText(a.bio, 78)}</p>
     <div class="artist-meta"><a class="btn btn-secondary btn-small" href="artist.html?id=${a.id}">View profile</a><span class="small muted">${products.filter(p=>p.artistId===a.id).length} works</span></div></div>
@@ -183,14 +217,14 @@ function renderHome(){
   byId('featuredProducts').innerHTML = products.slice(0, productCount).map(cardProduct).join('');
   byId('featuredArtists').innerHTML = artists.slice(0, artistCount).map(cardArtist).join('');
   const hv = byId('homeVideo');
-  if(hv) hv.innerHTML = `<div class="video-panel"><div class="video-placeholder"><div class="play-badge">▶</div></div><div class="video-meta"><div><span class="eyebrow">Studio Film</span><h3 style="font-family:Georgia,serif;font-size:34px;margin:12px 0 8px">Behind the making of Bangladeshi craft</h3><p class="muted">Step inside the workshop and discover the hands, materials, and process behind the collection.</p></div><a class="btn btn-secondary" href="artworks.html">Explore collection</a></div></div>`;
+  if(hv){ const src=assetImages.videos.homeStudioFilm || ''; hv.innerHTML = `<div class="video-panel">${src ? `<video class="video-placeholder" controls playsinline src="${src}"></video>` : `<div class="video-placeholder"><div class="play-badge">▶</div></div>`}<div class="video-meta"><div><span class="eyebrow">Studio Film</span><h3 style="font-family:Georgia,serif;font-size:34px;margin:12px 0 8px">Behind the making of Bangladeshi craft</h3><p class="muted">Replace the poster with your own workshop, artist interview, or making-process video by using <strong>assets/videos/home-studio-film.mp4</strong>.</p></div><a class="btn btn-secondary" href="artworks.html">Explore collection</a></div></div>`; }
 }
 function renderArtistsPage(){ byId('artistList').innerHTML = artists.map(cardArtist).join(''); }
 function renderArtworksPage(){ byId('artworkList').innerHTML = products.map(cardProduct).join(''); }
 function renderArtistDetail(){
   const a=getArtist(qs().get('id') || artists[0].id); if(!a) return;
   byId('artistHero').innerHTML = `
-    <div class="detail-visual" data-title="${a.name}"></div>
+    <div class="detail-visual" data-title="${a.name}"${bgStyle(artistImage(a.id))}></div>
     <div><span class="eyebrow">Artist Profile</span><h1>${a.name}</h1><p>${a.longBio}</p>
       <div class="meta-list"><div><span>Specialty</span><strong>${a.specialty}</strong></div><div><span>District</span><strong>${a.district}</strong></div><div><span>Experience</span><strong>${a.years}</strong></div><div><span>Philosophy</span><strong>${a.philosophy}</strong></div></div>
     </div>`;
@@ -202,8 +236,8 @@ function renderArtistDetail(){
 function renderProductDetail(){
   const p=getProduct(qs().get('id') || products[0].id); if(!p) return; const a=getArtist(p.artistId);
   byId('productHero').innerHTML = `
-    <div><div class="detail-visual" data-title="${p.name}"></div>
-      <div class="gallery-grid"><div class="thumb" data-label="Front View"></div><div class="thumb" data-label="Texture Detail"></div><div class="thumb" data-label="Styled Interior"></div></div></div>
+    <div><div class="detail-visual" data-title="${p.name}"${bgStyle(productImage(p.id))}></div>
+      <div class="gallery-grid"><div class="thumb" data-label="Front View"${bgStyle(productImage(p.id))}></div><div class="thumb" data-label="Texture Detail"${bgStyle(productImage(p.id))}></div><div class="thumb" data-label="Styled Interior"${bgStyle(productImage(p.id))}></div></div></div>
     <div><span class="eyebrow">${p.category}</span><h1>${p.name}</h1><p>${p.description}</p>
       <div class="price-wrap"><div><div class="small muted">Curated price</div><div class="price">${money(p.price)}</div></div><button class="btn" data-add-cart="${p.id}">Add to cart</button></div>
       <div class="meta-list"><div><span>Artist</span><strong><a href="artist.html?id=${a.id}">${a.name}</a></strong></div><div><span>Materials</span><strong>${p.materials}</strong></div><div><span>Dimensions</span><strong>${p.dimensions}</strong></div><div><span>Edition</span><strong>${p.edition || 'Curated Edition'}</strong></div><div><span>Authenticity</span><strong>${p.authenticity || 'Certificate included'}</strong></div></div>
@@ -220,23 +254,23 @@ function renderProductDetail(){
   byId('certificateBox').innerHTML = `<div class="detail-card card-body"><h3>Authenticity & certificate</h3><div class="certificate-meta"><div><strong>Certificate Code:</strong> ${p.certificate}</div><div><strong>Edition:</strong> ${p.edition || 'Curated Edition'}</div><div><strong>Verification Page:</strong> <a href="certificate.html?id=${p.id}">View digital certificate</a></div></div></div>`;
   if(byId('productVideo')){
     const src = p.video || '';
-    byId('productVideo').innerHTML = `<div class="section-head"><div><span class="eyebrow">Video Story</span><h2>See the artwork in motion</h2><p class="muted">See how the piece moves through the studio, the finishing process, and the interior styling journey.</p></div></div><div class="video-panel"><div class="inline-video ${src ? '' : 'fallback'}">${src ? `<video controls playsinline src="${src}"></video>` : `<div class="play-badge">▶</div>`}</div><div class="video-meta"><div><h3 style="font-family:Georgia,serif;font-size:30px;margin:0 0 8px">${p.name} film section</h3><p class="muted">Each film offers a closer look at making, material, and placement so buyers can understand the work beyond still images.</p></div><a class="btn btn-secondary" href="certificate.html?id=${p.id}">View certificate</a></div></div>`;
+    byId('productVideo').innerHTML = `<div class="section-head"><div><span class="eyebrow">Video Story</span><h2>See the artwork in motion</h2><p class="muted">This section can hold your own product video, process film, or styled room presentation.</p></div></div><div class="video-panel"><div class="inline-video ${src ? '' : 'fallback'}">${src ? `<video controls playsinline src="${src}"></video>` : `<div class="play-badge">▶</div>`}</div><div class="video-meta"><div><h3 style="font-family:Georgia,serif;font-size:30px;margin:0 0 8px">${p.name} film section</h3><p class="muted">Replace this placeholder with your own MP4 video to show how the piece is made, displayed, or styled in a room.</p></div><a class="btn btn-secondary" href="certificate.html?id=${p.id}">View certificate</a></div></div>`;
   }
   byId('relatedWorks').innerHTML = products.filter(x=>x.artistId===a.id && x.id!==p.id).slice(0,3).map(cardProduct).join('');
 }
 function renderCartPage(){
   const wrap=byId('cartItemsPage'); if(!wrap) return;
-  if(!state.cart.length){ wrap.innerHTML=`<div class="detail-card card-body"><h3>Your cart is empty</h3><p class="muted">Browse the collection and save the pieces that speak to your space, story, or gifting plans.</p><a class="btn" href="artworks.html">Explore artworks</a></div>`; if(byId('cartSummary')) byId('cartSummary').innerHTML=''; return; }
+  if(!state.cart.length){ wrap.innerHTML=`<div class="detail-card card-body"><h3>Your cart is empty</h3><p class="muted">Browse the curated collection and add a few handcrafted pieces.</p><a class="btn" href="artworks.html">Explore artworks</a></div>`; if(byId('cartSummary')) byId('cartSummary').innerHTML=''; return; }
   const items=state.cart.map(i=>{const p=getProduct(i.id), a=getArtist(p.artistId); return `
-    <div class="cart-row"><div class="cart-thumb" data-title="${p.name}"></div><div><h3 style="margin:0 0 6px">${p.name}</h3><p class="small muted">By ${a.name}</p><p class="muted">${p.story}</p><div class="qty-wrap"><button data-qty="-1" data-id="${p.id}">−</button><span>${i.qty}</span><button data-qty="1" data-id="${p.id}">+</button></div></div><strong>${money(p.price*i.qty)}</strong></div>`}).join('');
+    <div class="cart-row"><div class="cart-thumb" data-title="${p.name}"${bgStyle(productImage(p.id))}></div><div><h3 style="margin:0 0 6px">${p.name}</h3><p class="small muted">By ${a.name}</p><p class="muted">${p.story}</p><div class="qty-wrap"><button data-qty="-1" data-id="${p.id}">−</button><span>${i.qty}</span><button data-qty="1" data-id="${p.id}">+</button></div></div><strong>${money(p.price*i.qty)}</strong></div>`}).join('');
   wrap.innerHTML=items;
   const subtotal=state.cart.reduce((s,i)=>s+getProduct(i.id).price*i.qty,0), shipping=350, total=subtotal+shipping;
   byId('cartSummary').innerHTML=`<div class="checkout-box card-body"><h3>Order Summary</h3><div class="meta-list"><div><span>Subtotal</span><strong>${money(subtotal)}</strong></div><div><span>Curated packaging</span><strong>${money(shipping)}</strong></div><div><span>Total</span><strong>${money(total)}</strong></div></div><a class="btn" style="margin-top:18px;width:100%" href="checkout.html">Proceed to checkout</a></div>`;
 }
 function renderCheckout(){
   const subtotal=state.cart.reduce((s,i)=>s+getProduct(i.id).price*i.qty,0), shipping=350, total=subtotal+shipping;
-  const summary = state.cart.length ? state.cart.map(i=>{const p=getProduct(i.id); return `<div class="meta-list"><div><span>${p.name} × ${i.qty}</span><strong>${money(p.price*i.qty)}</strong></div></div>`}).join('') : '<p class="muted">No items added yet.</p>';
-  if(byId('checkoutSummary')) byId('checkoutSummary').innerHTML=`<div class="checkout-box card-body"><h3>Order summary</h3>${summary}<div class="meta-list"><div><span>Shipping</span><strong>${money(shipping)}</strong></div><div><span>Total</span><strong>${money(total)}</strong></div></div><a class="btn" style="margin-top:18px;width:100%" href="confirmation.html">Confirm order</a></div>`;
+  const summary = state.cart.length ? state.cart.map(i=>{const p=getProduct(i.id); return `<div class="meta-list"><div><span>${p.name} × ${i.qty}</span><strong>${money(p.price*i.qty)}</strong></div></div>`}).join('') : '<p class="muted">No items in cart.</p>';
+  if(byId('checkoutSummary')) byId('checkoutSummary').innerHTML=`<div class="checkout-box card-body"><h3>Order summary</h3>${summary}<div class="meta-list"><div><span>Shipping</span><strong>${money(shipping)}</strong></div><div><span>Total</span><strong>${money(total)}</strong></div></div><a class="btn" style="margin-top:18px;width:100%" href="confirmation.html">Confirm demo order</a></div>`;
 }
 function renderConfirmation(){
   const orderNo = 'KC-ORD-' + new Date().getFullYear() + '-' + String(new Date().getMonth()+1).padStart(2,'0') + String(new Date().getDate()).padStart(2,'0');
@@ -245,7 +279,7 @@ function renderConfirmation(){
 }
 function renderCertificate(){
   const p=getProduct(qs().get('id') || products[0].id), a=getArtist(p.artistId); if(!p) return;
-  byId('certificatePanel').innerHTML=`<div class="certificate-shell"><div class="certificate-paper"><div class="cert-kicker"><div class="cert-brand"><span class="eyebrow">Official Verification</span><h2>KaruCart</h2><p>Curated Bangladeshi art & craft verification record</p></div><div class="cert-seal">VERIFIED<br>ARTWORK</div></div><h1 class="cert-title">Certificate of Authenticity</h1><p class="cert-lead">This document certifies that <strong>${p.name}</strong> is a curated artist-linked work presented by KaruCart and created by <strong>${a.name}</strong>. The piece has been assigned the following reference information for identity, storytelling, and future traceability.</p><div class="cert-grid"><div class="cert-box"><h4>Artwork</h4><div class="cert-value">${p.name}</div><p class="muted">${p.story}</p></div><div class="cert-box"><h4>Certificate Code</h4><div class="cert-value">${p.certificate}</div><p class="muted">Verified KaruCart record</p></div><div class="cert-box"><h4>Artist</h4><div class="cert-value">${a.name}</div><p class="muted">${a.specialty}</p></div><div class="cert-box"><h4>Edition & Status</h4><div class="cert-value">${p.edition || 'Curated Edition'}</div><p class="muted">Status: Verified by KaruCart</p></div></div><div class="cert-footer"><div class="sig-line"><strong>KaruCart Curatorial Desk</strong><span class="muted">Issued by platform verification</span></div><div class="sig-line"><strong>${a.name}</strong><span class="muted">Artist attribution record</span></div><div class="sig-line"><div class="cert-qr"></div><span class="muted">Verification code area</span></div></div><div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px"><a class="btn" href="product.html?id=${p.id}">Back to artwork</a><a class="btn btn-secondary" href="artworks.html">Browse collection</a></div></div></div>`;
+  byId('certificatePanel').innerHTML=`<div class="certificate-shell"><div class="certificate-paper"><div class="cert-kicker"><div class="cert-brand"><span class="eyebrow">Official Verification</span><h2>KaruCart</h2><p>Curated Bangladeshi art & craft verification record</p></div><div class="cert-seal">VERIFIED<br>ARTWORK</div></div><h1 class="cert-title">Certificate of Authenticity</h1><p class="cert-lead">This document certifies that <strong>${p.name}</strong> is a curated artist-linked work presented by KaruCart and created by <strong>${a.name}</strong>. The piece has been assigned the following reference information for identity, storytelling, and future traceability.</p><div class="cert-grid"><div class="cert-box"><h4>Artwork</h4><div class="cert-value">${p.name}</div><p class="muted">${p.story}</p></div><div class="cert-box"><h4>Certificate Code</h4><div class="cert-value">${p.certificate}</div><p class="muted">Verified demo record</p></div><div class="cert-box"><h4>Artist</h4><div class="cert-value">${a.name}</div><p class="muted">${a.specialty}</p></div><div class="cert-box"><h4>Edition & Status</h4><div class="cert-value">${p.edition || 'Curated Edition'}</div><p class="muted">Status: Verified by KaruCart</p></div></div><div class="cert-footer"><div class="sig-line"><strong>KaruCart Curatorial Desk</strong><span class="muted">Issued by platform verification</span></div><div class="sig-line"><strong>${a.name}</strong><span class="muted">Artist attribution record</span></div><div class="sig-line"><div class="cert-qr"></div><span class="muted">Future QR verification area</span></div></div><div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px"><a class="btn" href="product.html?id=${p.id}">Back to artwork</a><a class="btn btn-secondary" href="artworks.html">Browse collection</a></div></div></div>`;
 }
 
 function setupRevealAnimations(){

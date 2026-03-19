@@ -278,3 +278,16 @@ body:after{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;opac
   .product-price{font-size:22px}
   .site-header{backdrop-filter:blur(10px)}
 }
+
+
+/* Final visual pack image integration */
+.hero-feature-image,.banner-art-image{width:100%;height:100%;object-fit:cover;display:block;border-radius:30px;border:1px solid var(--line);box-shadow:var(--shadow)}
+.hero-feature-image{aspect-ratio:4/5;min-height:520px;background:#efe8dd}
+.banner-art-image{min-height:380px}
+.art-visual,.banner-art{display:none !important}
+.product-media,.artist-media,.detail-visual,.thumb,.cart-thumb,.video-placeholder,.inline-video.fallback-poster{background-size:cover;background-position:center center;background-repeat:no-repeat;overflow:hidden}
+.product-media::before,.artist-media::before,.detail-visual::before,.thumb::before,.cart-thumb::before{background:rgba(255,252,247,.82);padding:8px 12px;border-radius:14px;backdrop-filter:blur(4px)}
+.detail-visual::before,.thumb::before,.cart-thumb::before{content:none}
+.video-placeholder{background-image:url('assets/images/site/craft-video-poster.jpg');min-height:420px;border-radius:30px;position:relative;overflow:hidden}
+.video-placeholder::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(26,17,10,.08))}
+@media (max-width:760px){.hero-feature-image{min-height:360px}.banner-art-image{min-height:260px}.video-placeholder{min-height:260px}}

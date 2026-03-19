@@ -1,0 +1,48 @@
+KARUCART IMAGE + VIDEO PATH GUIDE
+================================
+
+1) Logo path
+   assets/logo/karucart-logo.png
+
+2) Homepage big images
+   assets/images/site/hero-feature.jpg
+   assets/images/site/brand-story.jpg
+   assets/images/site/craft-video-poster.jpg
+   assets/images/site/studio-film-poster.jpg
+
+3) Artist images
+   assets/images/artists/farzana-akter.jpg
+   assets/images/artists/mrinmoy-dey.jpg
+   assets/images/artists/rakib-hasan.jpg
+   assets/images/artists/samia-noor.jpg
+
+4) Artwork images
+   assets/images/products/nakshi-dream-frame.jpg
+   assets/images/products/golden-river-canvas.jpg
+   assets/images/products/cane-light-stool.jpg
+   assets/images/products/heritage-thread-panel.jpg
+   assets/images/products/folk-echo-painting.jpg
+   assets/images/products/woven-side-piece.jpg
+   assets/images/products/river-bloom-kantha.jpg
+   assets/images/products/monsoon-lightscape.jpg
+   assets/images/products/terracotta-sun-disc.jpg
+   assets/images/products/clay-story-vase.jpg
+
+5) Video paths you can change
+   assets/videos/home-studio-film.mp4
+   assets/videos/nakshi-dream-frame.mp4
+   assets/videos/golden-river-canvas.mp4
+   assets/videos/cane-light-stool.mp4
+
+6) Where to edit paths in code
+   Open script.js
+   Search for: const assetImages = {
+   Search for: videos:
+   Search for: video:'
+
+7) Quick rule
+   If you replace a file, keep the same file name and path.
+   Then you do not need to change any code.
+
+8) If you want different file names
+   Change them inside script.js in the assetImages object and in each product's video field.
