@@ -171,9 +171,17 @@ function cardArtist(a){ return `
     <div class="artist-meta"><a class="btn btn-secondary btn-small" href="artist.html?id=${a.id}">View profile</a><span class="small muted">${products.filter(p=>p.artistId===a.id).length} works</span></div></div>
   </article>`; }
 
+function getHomeCounts(){
+  return {
+    productCount: 9,
+    artistCount: 3
+  };
+}
+
 function renderHome(){
-  byId('featuredProducts').innerHTML = products.slice(0,10).map(cardProduct).join('');
-  byId('featuredArtists').innerHTML = artists.slice(0,4).map(cardArtist).join('');
+  const { productCount, artistCount } = getHomeCounts();
+  byId('featuredProducts').innerHTML = products.slice(0, productCount).map(cardProduct).join('');
+  byId('featuredArtists').innerHTML = artists.slice(0, artistCount).map(cardArtist).join('');
   const hv = byId('homeVideo');
   if(hv) hv.innerHTML = `<div class="video-panel"><div class="video-placeholder"><div class="play-badge">▶</div></div><div class="video-meta"><div><span class="eyebrow">Studio Film</span><h3 style="font-family:Georgia,serif;font-size:34px;margin:12px 0 8px">Behind the making of Bangladeshi craft</h3><p class="muted">Add your own workshop, artist interview, or making-process video here to make the homepage feel alive and premium.</p></div><a class="btn btn-secondary" href="artworks.html">Explore collection</a></div></div>`;
 }
@@ -258,7 +266,14 @@ function bindEvents(){
 function init(){
   updateHeaderBehavior(); setupMobileMenu(); updateCartCount(); bindEvents();
   const page=document.body.dataset.page;
-  if(page==='home') renderHome();
+  if(page==='home') {
+    renderHome();
+    let resizeTimer;
+    window.addEventListener('resize', ()=>{
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(renderHome, 120);
+    });
+  }
   if(page==='artists') renderArtistsPage();
   if(page==='artworks') renderArtworksPage();
   if(page==='artist') renderArtistDetail();
