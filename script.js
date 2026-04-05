@@ -2,36 +2,36 @@
 const artists = [
   {
     id:'farzana-akter', name:'Arpita Debnath Opy', district:'Gazipur, Bangladesh', specialty:'Nakshi Kantha & Textile Storytelling', years:'12 years experience',
-    bio:'Farzana transforms traditional stitch language into refined wall pieces and collectible textile art for contemporary interiors.',
+    bio:'Arpita transforms traditional stitch language into refined wall pieces and collectible textile art for contemporary interiors.',
     philosophy:'Every stitch should carry memory, tenderness, and dignity.',
-    longBio:'Working with thread, cloth, memory, and inherited motifs, Farzana creates textile pieces that feel deeply rooted yet highly refined. Her practice focuses on preserving storytelling traditions while presenting them in a form that suits modern homes, galleries, and collectors.',
+    longBio:'Working with thread, cloth, memory, and inherited motifs, Arpita creates textile pieces that feel deeply rooted yet highly refined. Her practice focuses on preserving storytelling traditions while presenting them in a form that suits modern homes, galleries, and collectors.',
     achievements:['Community mentor for emerging women artisans','Curated in local cultural fairs','Known for meticulous finishing and custom motifs'],
     skills:['Hand embroidery','Motif composition','Color harmony','Framing and finishing'],
     featured:true
   },
   {
     id:'mrinmoy-dey', name:'Abeeha Mim', district:'Dhaka, Bangladesh', specialty:'Folk-inspired Canvas Painting', years:'9 years experience',
-    bio:'Mrinmoy blends folk memory, rural atmosphere, and minimal modern composition into statement paintings.',
+    bio:'Mim blends folk memory, rural atmosphere, and minimal modern composition into statement paintings.',
     philosophy:'Culture should feel alive, not frozen in nostalgia.',
-    longBio:'Mrinmoy paints with layered restraint. His works borrow emotional rhythm from folk references but present them with contemporary balance, muted sophistication, and collector-friendly execution.',
+    longBio:'Mim paints with layered restraint. His works borrow emotional rhythm from folk references but present them with contemporary balance, muted sophistication, and collector-friendly execution.',
     achievements:['Featured in independent art circles','Known for textured mixed media surfaces','Works commissioned for boutique interiors'],
     skills:['Acrylic layering','Mixed media texture','Collector curation','Interior scale planning'],
     featured:true
   },
   {
-    id:'rakib-hasan', name:'Sidratul Muntha ribon', district:'Pabna, Bangladesh', specialty:'Cane & Wood Furniture Craft', years:'15 years experience',
-    bio:'Rakib designs furniture that feels warm, light, handmade, and suitable for modern spaces.',
+    id:'rakib-hasan', name:'Sidratul Muntha Ribon', district:'Pabna, Bangladesh', specialty:'Cane & Wood Furniture Craft', years:'15 years experience',
+    bio:'Sidratul designs furniture that feels warm, light, handmade, and suitable for modern spaces.',
     philosophy:'Furniture should be useful first, beautiful always.',
-    longBio:'Rakib works at the meeting point of practicality and artistry. His cane and wood pieces are shaped to feel breathable, elegant, and rooted in the craft language of Bangladesh while fitting clean contemporary interiors.',
+    longBio:'Sidratul works at the meeting point of practicality and artistry. His cane and wood pieces are shaped to feel breathable, elegant, and rooted in the craft language of Bangladesh while fitting clean contemporary interiors.',
     achievements:['Produced custom pieces for interior projects','Specialist in cane weave finishing','Known for durable handcrafted joinery'],
     skills:['Wood finishing','Cane weaving','Joinery','Interior styling sense'],
     featured:true
   },
   {
     id:'samia-noor', name:'Jisan Rahman', district:'Barishal, Bangladesh', specialty:'Ceramic & Terracotta Surface Art', years:'11 years experience',
-    bio:'Samia creates terracotta and ceramic pieces with soft earthy tones, sculpted texture, and gallery-friendly finishing.',
+    bio:'Jisan creates terracotta and ceramic pieces with soft earthy tones, sculpted texture, and gallery-friendly finishing.',
     philosophy:'Clay should still feel like earth, even after it becomes art.',
-    longBio:'Samia works with terracotta memory, carved geometry, and a restrained palette to create decorative objects and wall-ready surfaces that feel grounded, elegant, and deeply local. Her practice is especially suited to collectors who want handmade warmth with a refined visual language.',
+    longBio:'Jisan works with terracotta memory, carved geometry, and a restrained palette to create decorative objects and wall-ready surfaces that feel grounded, elegant, and deeply local. Her practice is especially suited to collectors who want handmade warmth with a refined visual language.',
     achievements:['Featured in regional craft showcases','Known for matte terracotta finishing','Creates small-batch collectible decor'],
     skills:['Clay forming','Terracotta carving','Kiln finishing','Surface texturing'],
     featured:true
