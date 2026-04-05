@@ -535,23 +535,3 @@ body:after{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;opac
     right: 10px;
   }
 }
-
-@media (max-width: 420px) {
-  .hero h1{
-    font-size: 28px !important;
-  }
-
-  .page-hero h1{
-    font-size: 26px !important;
-  }
-
-  .btn{
-    padding: 11px 14px;
-    border-radius: 14px;
-  }
-
-  .product-media,
-  .artist-media{
-    aspect-ratio: 1 / 1;
-  }
-}
